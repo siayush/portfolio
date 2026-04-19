@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface Props {
@@ -23,28 +22,26 @@ interface Props {
 
 export function ProjectCard({ title, description, tags, link, links }: Props) {
   return (
-    <Card
-      className={
-        "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
-      }
-    >
-      <CardHeader className="px-2">
-        <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
+    <Card className="flex flex-col overflow-hidden border hover:border-foreground/20 hover:shadow-md transition-all duration-300 ease-out h-full">
+      <CardHeader className="px-4 pt-4 pb-2">
+        <div className="space-y-1.5">
+          <CardTitle className="text-base font-semibold tracking-tight">
+            {title}
+          </CardTitle>
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <div className="prose max-w-full text-pretty font-sans text-xs dark:prose-invert">
+          <p className="text-pretty font-sans text-xs leading-relaxed text-muted-foreground">
             {description}
-          </div>
+          </p>
         </div>
       </CardHeader>
-      <CardContent className="mt-auto flex flex-col px-2">
+      <CardContent className="mt-auto px-4 pb-3">
         {tags && tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {tags?.map((tag) => (
+          <div className="flex flex-wrap gap-1">
+            {tags.map((tag) => (
               <Badge
-                className="px-1 py-0 text-[10px]"
+                className="px-1.5 py-0 text-[10px] font-normal"
                 variant="secondary"
                 key={tag}
               >
@@ -54,20 +51,25 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
           </div>
         )}
       </CardContent>
-      <CardFooter className="px-2 pb-2">
-        {links && links.length > 0 && (
-          <div className="flex flex-row flex-wrap items-start gap-1">
-            {links?.map((link, idx) => (
-              <Link href={link?.href} key={idx} target="_blank">
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
-                  {link.icon}
-                  {link.type}
+      {links && links.length > 0 && (
+        <CardFooter className="px-4 pb-4 pt-0">
+          <div className="flex flex-row flex-wrap items-start gap-1.5">
+            {links.map((l, idx) => (
+              <Link
+                href={l.href}
+                key={idx}
+                target="_blank"
+                aria-label={`${title} — ${l.type}`}
+              >
+                <Badge className="flex gap-1.5 px-2 py-1 text-[10px] hover:bg-primary/80">
+                  {l.icon}
+                  {l.type}
                 </Badge>
               </Link>
             ))}
           </div>
-        )}
-      </CardFooter>
+        </CardFooter>
+      )}
     </Card>
   );
 }

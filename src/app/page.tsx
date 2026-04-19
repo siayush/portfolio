@@ -13,13 +13,24 @@ import { buttonVariants } from "@/components/ui/button";
 
 const BLUR_FADE_DELAY = 0.04;
 
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+      <span className="text-brand font-mono" aria-hidden="true">
+        &gt;
+      </span>
+      {children}
+    </h2>
+  );
+}
+
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex flex-col min-h-[100dvh] space-y-12">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
+          <div className="gap-6 flex justify-between items-start">
+            <div className="flex-col flex flex-1 space-y-3">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
@@ -27,51 +38,57 @@ export default function Page() {
                 text={`I'm ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
-                className="max-w-[600px] md:text-xl"
+                className="max-w-[600px] text-muted-foreground md:text-lg"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
-              <BlurFade delay={BLUR_FADE_DELAY}>
-                <Link
-                  href={`mailto:${DATA.contact.email}`}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
-                  )}
-                >
-                  <MailIcon className="size-5" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.GitHub.url}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
-                  )}
-                >
-                  <Icons.github className="size-5" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.LinkedIn.url}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
-                  )}
-                >
-                  <Icons.linkedin className="size-5" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
-                  )}
-                >
-                  <Icons.x className="size-5" />
-                </Link>
+              <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
+                <div className="flex items-center gap-1 -ml-2 pt-1">
+                  <Link
+                    href={`mailto:${DATA.contact.email}`}
+                    aria-label="Send email"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-10 text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    <MailIcon className="size-5" />
+                  </Link>
+                  <Link
+                    href={DATA.contact.social.GitHub.url}
+                    aria-label="GitHub profile"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-10 text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    <Icons.github className="size-5" />
+                  </Link>
+                  <Link
+                    href={DATA.contact.social.LinkedIn.url}
+                    aria-label="LinkedIn profile"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-10 text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    <Icons.linkedin className="size-5" />
+                  </Link>
+                  <Link
+                    href={DATA.contact.social.X.url}
+                    aria-label="X (Twitter) profile"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-10 text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    <Icons.x className="size-5" />
+                  </Link>
+                </div>
               </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
+              <Avatar className="size-28 border-2 border-border shadow-sm">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -80,17 +97,15 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="about">
+      <section id="about" className="space-y-3">
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <h2 className="text-2xl font-bold">
-            <span className="text-green-300">&gt;</span> About
-          </h2>
+          <SectionHeading>About</SectionHeading>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <p className="text-gray-500 italic text-xs mb-4">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             [ break → understand → build ]
           </p>
-          <div className="prose max-w-full text-pretty font-sans text-sm dark:prose-invert">
+          <div className="prose max-w-full text-pretty font-sans text-sm leading-relaxed dark:prose-invert mt-3">
             {DATA.summary}
           </div>
         </BlurFade>
@@ -98,70 +113,72 @@ export default function Page() {
 
       <section id="skills">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <h2 className="text-2xl font-bold">
-              <span className="text-green-300">&gt;</span> Skills
-            </h2>
-            <h2 className="text-l ">Languages</h2>
-            <div className="flex flex-wrap gap-1">
-              {DATA.languages.map((skill, id) => (
-                <Badge key={skill}>{skill}</Badge>
-              ))}
+          <div className="flex min-h-0 flex-col gap-y-4">
+            <SectionHeading>Skills</SectionHeading>
+            <div className="space-y-2">
+              <h3 className="text-[11px] uppercase tracking-widest font-medium text-muted-foreground">
+                Languages
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {DATA.languages.map((skill) => (
+                  <Badge key={skill}>{skill}</Badge>
+                ))}
+              </div>
             </div>
-            <h2 className="text-l ">Technologies</h2>
-            <div className="flex flex-wrap gap-1">
-              {DATA.technologies.map((skill, id) => (
-                <Badge key={skill}>{skill}</Badge>
-              ))}
+            <div className="space-y-2">
+              <h3 className="text-[11px] uppercase tracking-widest font-medium text-muted-foreground">
+                Technologies
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {DATA.technologies.map((skill) => (
+                  <Badge key={skill}>{skill}</Badge>
+                ))}
+              </div>
             </div>
           </div>
         </BlurFade>
       </section>
 
       <section id="projects">
-        <div className="flex min-h-0 flex-col gap-y-3">
+        <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <h2 className="text-2xl font-bold">
-              <span className="text-green-300">&gt;</span> Projects
-            </h2>
+            <SectionHeading>Projects</SectionHeading>
           </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-              {DATA.projects.map((project, id) => (
-                <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 4}>
-                  <ProjectCard
-                    key={project.title}
-                    title={project.title}
-                    description={project.description}
-                    tags={project.technologies}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {DATA.projects.map((project) => (
+              <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 4}>
+                <ProjectCard
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  tags={project.technologies}
+                  links={project.links}
+                />
+              </BlurFade>
+            ))}
           </div>
         </div>
       </section>
 
       <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-3">
+        <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-2xl font-bold">
-              <span className="text-green-300">&gt;</span> Worked With
-            </h2>
+            <SectionHeading>Worked With</SectionHeading>
           </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 5}>
-              <WorkCard
-                key={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
+          <div className="flex flex-col gap-y-3">
+            {DATA.work.map((work) => (
+              <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 5}>
+                <WorkCard
+                  key={work.company}
+                  title={work.company}
+                  subtitle={work.title}
+                  href={work.href}
+                  period={`${work.start} - ${work.end ?? "Present"}`}
+                  description={work.description}
+                />
+              </BlurFade>
+            ))}
+          </div>
         </div>
       </section>
     </main>
