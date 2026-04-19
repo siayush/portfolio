@@ -10,18 +10,17 @@ export const DATA = {
   summary:
     "software engineer working on backend, databases, and system architecture. drawn to low-level engineering and the details of how things actually work under the hood.",
   avatarUrl: "https://avatars.githubusercontent.com/u/28400861?v=4",
-  languages: ["C", "Go", "Typescript", "JavaScript", "Python", "SQL"],
+  languages: ["C", "Go", "Typescript", "JavaScript", "Python"],
   technologies: [
-    "Postgres",
+    "MySQL",
     "MongoDB",
     "Elastic Search",
     "React",
-    "NextJs",
     "NodeJs",
-    "ExpressJs",
     "Docker",
     "Kafka",
     "AWS",
+    "Redis",
   ],
   contact: {
     email: "siayush.gupta@gmail.com",
@@ -51,7 +50,8 @@ export const DATA = {
       logoUrl: "/atomic.png",
       start: "May 2025",
       end: "Present",
-      description: "Software Engineer with a focus on backend development.",
+      description:
+        "building backend services and APIs. focused on performance, scalability, and clean system design.",
     },
     {
       company: "Infogain",
@@ -63,7 +63,7 @@ export const DATA = {
       start: "Dec 2021",
       end: "April 2025",
       description:
-        "Implemented server-side applications using Node.js, ensuring efficient handling of backend logic. Collaborated closely with the frontend team to seamlessly integrate APIs into the frontend, ensuring smooth functionality and user experience across the application.  Implemented micro frontend architecture, enabling modular development and seamless integration of multiple frontend applications for improved scalability and maintainability.  Increased code coverage from 40% to 82% by writing comprehensive unit and integration tests, ensuring greater reliability and maintainability. Led the integration of Google Tag Manager (GTM) for improved tracking and analytics. Worked with AWS to deploy and scale applications",
+        "built server-side applications and APIs, working closely with the frontend team on integration. introduced a micro-frontend architecture for modular development, raised test coverage from 40% to 82%, led the Google Tag Manager rollout, and deployed services on AWS.",
     },
     {
       company: "NNT",
@@ -75,7 +75,7 @@ export const DATA = {
       start: "June 2021",
       end: "Nov 2021",
       description:
-        "Created and integrated REST APIs with frontend components using Node.js, facilitating seamless data retrieval and display. Contributed to the codebase by converting class-based components to functional components, improving performance, maintainability. Conducted testing and debugging, achieving 95% functionality and 30% faster issue identification with Jest.",
+        "built and integrated REST APIs, migrated legacy class components to functional ones, and added test coverage that cut issue-identification time by ~30%.",
     },
   ],
 
@@ -83,16 +83,14 @@ export const DATA = {
     {
       title: "ingestor",
       description:
-        "Efficiently manage and query vast log data volumes with a scalable Log Ingestor and Query Interface, featuring real-time ingestion, advanced filtering, and a user-friendly interface.",
+        "scalable log ingestion and query system with real-time pipelines, advanced filtering, and a dashboard for exploring logs at volume.",
       technologies: [
         "Go",
         "Kafka",
         "Elastic Search",
         "Docker",
         "Kibana",
-        "Typescript",
-        "NextJS",
-        "Shadcn UI",
+        "React",
       ],
       links: [
         // {
@@ -110,7 +108,7 @@ export const DATA = {
     {
       title: "ScratchML",
       description:
-        "Implementations of the Machine Learning models and algorithms from scratch using NumPy only.",
+        "classic machine learning models and algorithms implemented from scratch with only NumPy.",
       technologies: ["Python", "NumPy"],
       links: [
         // {
@@ -128,7 +126,7 @@ export const DATA = {
     {
       title: "Natours",
       description:
-        "An tour booking web app with user authentication and authorization.",
+        "a tour booking app with authentication, authorization, and a RESTful Node.js backend.",
       technologies: ["NodeJS", "ExpressJs", "MongoDB"],
       links: [
         // {
@@ -144,9 +142,10 @@ export const DATA = {
       ],
     },
     {
-      title: "Model-Zoo",
-      description: "Implementation of various deep learning models in Pytorch",
-      technologies: ["Pytorch", "Python"],
+      title: "monkey",
+      description:
+        "tree-walking interpreter for the Monkey language, built from scratch in Go. supports first-class functions, closures, arrays, and hash maps.",
+      technologies: ["Go", "Interpreter", "Compilers"],
       links: [
         // {
         //   type: "Website",
@@ -155,7 +154,7 @@ export const DATA = {
         // },
         {
           type: "Source",
-          href: "https://github.com/siAyush/Model-Zoo",
+          href: "https://github.com/siAyush/monkey",
           icon: <Icons.github className="size-3" />,
         },
       ],
