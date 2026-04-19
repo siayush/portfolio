@@ -8,7 +8,7 @@ export const DATA = {
   locationLink: "https://www.google.com/maps/place/Delhi",
   description: "Software Engineer",
   summary:
-    "I work as a fullstack developer during the day, learning low-level and systems programming.",
+    "software engineer working on backend, databases, and system architecture. drawn to low-level engineering and the details of how things actually work under the hood.",
   avatarUrl: "https://avatars.githubusercontent.com/u/28400861?v=4",
   languages: ["C", "Go", "Typescript", "JavaScript", "Python", "SQL"],
   technologies: [
@@ -51,8 +51,7 @@ export const DATA = {
       logoUrl: "/atomic.png",
       start: "May 2025",
       end: "Present",
-      description:
-        "Software Engineer with a focus on backend development.",
+      description: "Software Engineer with a focus on backend development.",
     },
     {
       company: "Infogain",
