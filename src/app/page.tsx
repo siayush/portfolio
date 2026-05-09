@@ -83,6 +83,32 @@ export default function Page() {
                 </Link>
               </div>
             </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 1.8}>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-[1fr_320px] gap-x-6 gap-y-3 items-start">
+                <div className="space-y-2">
+                  <p className="font-pixel text-[10px] tracking-[0.15em] text-blueprint">
+                    RESOLVE
+                  </p>
+                  <p className="font-serif text-sm leading-snug text-foreground/85">
+                    Most engineering starts as a tangle and quietly converges
+                    on the curve underneath. The interesting work is in the
+                    middle frames — the part where it doesn&apos;t look like
+                    anything yet.
+                  </p>
+                  <p className="font-pixel text-[9px] tracking-[0.15em] text-muted-foreground pt-1">
+                    8S LOOP · 4 CUBIC BEZIERS
+                  </p>
+                </div>
+                <figure className="w-full">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/loop-hero.svg"
+                    alt="Tangled curve resolving into a smooth circle"
+                    className="w-full h-auto"
+                  />
+                </figure>
+              </div>
+            </BlurFade>
           </div>
         </div>
       </section>

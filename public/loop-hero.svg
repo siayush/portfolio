@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 390 270" style="--color-cobalt-300:#B9C7FE;--color-cobalt-400:#7585FB;--color-cobalt-600:#1E37F0;">
+  <defs>
+    <pattern id="grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse" viewBox="0 0 10 10">
+      <line x1="0" y1="0" x2="10" y2="0" stroke="var(--color-cobalt-400)" stroke-width="1"/>
+      <line x1="10" y1="0" x2="10" y2="10" stroke="var(--color-cobalt-400)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="390" height="270" fill="url(#grid)" fill-opacity="0.35"/>
+  <!-- Close the missing left + bottom edges of the grid -->
+  <line x1="0.5" y1="0" x2="0.5" y2="270" stroke="var(--color-cobalt-400)" stroke-width="1" stroke-opacity="0.35"/>
+  <line x1="0" y1="269.5" x2="390" y2="269.5" stroke="var(--color-cobalt-400)" stroke-width="1" stroke-opacity="0.35"/>
+
+  <!-- Morphing path: tangle → less-tangle → almost-circle → circle → loop back -->
+  <path
+    stroke="var(--color-cobalt-600)" stroke-width="2" fill="none"
+    stroke-linecap="round" stroke-linejoin="round">
+    <animate
+      attributeName="d"
+      dur="8s"
+      repeatCount="indefinite"
+      keyTimes="0;0.18;0.36;0.55;0.78;1"
+      values="
+        M 165 75 C 280 30 245 165 175 110 C 95 45 130 215 220 175 C 305 140 235 70 160 135 C 95 195 250 220 165 75 Z;
+        M 175 75 C 265 50 260 150 195 130 C 130 110 130 200 200 195 C 270 190 265 145 235 135 C 200 125 195 80 175 75 Z;
+        M 190 65 C 245 65 268 100 268 132 C 268 168 240 200 200 200 C 158 200 128 168 132 132 C 136 95 145 65 190 65 Z;
+        M 195 60 C 234.2 60 270 92.8 270 132 C 270 171.2 234.2 204 195 204 C 155.8 204 120 171.2 120 132 C 120 92.8 155.8 60 195 60 Z;
+        M 195 60 C 234.2 60 270 92.8 270 132 C 270 171.2 234.2 204 195 204 C 155.8 204 120 171.2 120 132 C 120 92.8 155.8 60 195 60 Z;
+        M 165 75 C 280 30 245 165 175 110 C 95 45 130 215 220 175 C 305 140 235 70 160 135 C 95 195 250 220 165 75 Z
+      "/>
+  </path>
+
+</svg>
