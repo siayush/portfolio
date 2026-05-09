@@ -2,7 +2,6 @@ import BlurFade from "@/components/blur-fade";
 import BlurFadeText from "@/components/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { WorkCard } from "@/components/work-card";
-import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -14,12 +13,12 @@ const BLUR_FADE_DELAY = 0.04;
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-      <span className="text-brand font-mono" aria-hidden="true">
-        &gt;
-      </span>
-      {children}
-    </h2>
+    <div className="space-y-2">
+      <h2 className="font-pixel text-foreground text-lg sm:text-xl tracking-tight">
+        {String(children).toUpperCase()}
+      </h2>
+      <div className="h-px bg-foreground/30" />
+    </div>
   );
 }
 
@@ -27,65 +26,63 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-12">
       <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-6 flex justify-between items-start">
-            <div className="flex-col flex flex-1 space-y-3">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`I'm ${DATA.name.split(" ")[0]}`}
-              />
-              <BlurFadeText
-                className="max-w-[600px] text-muted-foreground md:text-lg"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-              <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
-                <div className="flex items-center gap-1 -ml-2 pt-1">
-                  <Link
-                    href={`mailto:${DATA.contact.email}`}
-                    aria-label="Send email"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-10 text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <MailIcon className="size-5" />
-                  </Link>
-                  <Link
-                    href={DATA.contact.social.GitHub.url}
-                    aria-label="GitHub profile"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-10 text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <Icons.github className="size-5" />
-                  </Link>
-                  <Link
-                    href={DATA.contact.social.LinkedIn.url}
-                    aria-label="LinkedIn profile"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-10 text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <Icons.linkedin className="size-5" />
-                  </Link>
-                  <Link
-                    href={DATA.contact.social.X.url}
-                    aria-label="X (Twitter) profile"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-10 text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    <Icons.x className="size-5" />
-                  </Link>
-                </div>
-              </BlurFade>
-            </div>
+        <div className="mx-auto w-full max-w-2xl space-y-6">
+          <div className="flex-col flex flex-1 space-y-3">
+            <BlurFadeText
+              delay={BLUR_FADE_DELAY}
+              className="font-pixel text-blueprint text-3xl sm:text-5xl xl:text-6xl/none leading-none tracking-tight"
+              yOffset={8}
+              text={`I'M ${DATA.name.split(" ")[0].toUpperCase()}.`}
+            />
+            <BlurFade delay={BLUR_FADE_DELAY}>
+              <p className="max-w-[600px] font-serif text-foreground text-base sm:text-lg leading-snug">
+                {DATA.description}
+              </p>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
+              <div className="flex items-center gap-1 -ml-2 pt-1">
+                <Link
+                  href={`mailto:${DATA.contact.email}`}
+                  aria-label="Send email"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
+                  )}
+                >
+                  <MailIcon className="size-4" />
+                </Link>
+                <Link
+                  href={DATA.contact.social.GitHub.url}
+                  aria-label="GitHub profile"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
+                  )}
+                >
+                  <Icons.github className="size-4" />
+                </Link>
+                <Link
+                  href={DATA.contact.social.LinkedIn.url}
+                  aria-label="LinkedIn profile"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
+                  )}
+                >
+                  <Icons.linkedin className="size-4" />
+                </Link>
+                <Link
+                  href={DATA.contact.social.X.url}
+                  aria-label="X (Twitter) profile"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
+                  )}
+                >
+                  <Icons.x className="size-4" />
+                </Link>
+              </div>
+            </BlurFade>
           </div>
         </div>
       </section>
@@ -95,83 +92,101 @@ export default function Page() {
           <SectionHeading>About</SectionHeading>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            [ break → understand → build ]
+          <p className="font-pixel text-[10px] uppercase tracking-[0.15em] text-blueprint mt-3">
+            [ BREAK / UNDERSTAND / BUILD ]
           </p>
-          <div className="prose max-w-full text-pretty font-sans text-sm leading-relaxed dark:prose-invert mt-3">
+          <p className="font-serif text-foreground text-base leading-relaxed mt-3 max-w-full">
             {DATA.summary}
-          </div>
+          </p>
         </BlurFade>
       </section>
 
-      <section id="skills">
+      <section id="skills" className="space-y-3">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <div className="flex min-h-0 flex-col gap-y-4">
-            <SectionHeading>Skills</SectionHeading>
-            <div className="space-y-2">
-              <h3 className="text-[11px] uppercase tracking-widest font-medium text-muted-foreground">
+          <SectionHeading>Skills</SectionHeading>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <div className="flex flex-col gap-y-5 mt-3">
+            <div>
+              <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
                 Languages
               </h3>
-              <div className="flex flex-wrap gap-1.5">
+              <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
                 {DATA.languages.map((skill) => (
-                  <Badge key={skill}>{skill}</Badge>
+                  <li
+                    key={skill}
+                    className="flex items-baseline gap-1.5"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="text-foreground/40 select-none"
+                    >
+                      •
+                    </span>
+                    <span>{skill}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
-            <div className="space-y-2">
-              <h3 className="text-[11px] uppercase tracking-widest font-medium text-muted-foreground">
+            <div>
+              <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
                 Technologies
               </h3>
-              <div className="flex flex-wrap gap-1.5">
+              <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
                 {DATA.technologies.map((skill) => (
-                  <Badge key={skill}>{skill}</Badge>
+                  <li
+                    key={skill}
+                    className="flex items-baseline gap-1.5"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="text-foreground/40 select-none"
+                    >
+                      •
+                    </span>
+                    <span>{skill}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </BlurFade>
       </section>
 
-      <section id="projects">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <SectionHeading>Projects</SectionHeading>
-          </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {DATA.projects.map((project) => (
-              <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 4}>
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.technologies}
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
-          </div>
+      <section id="projects" className="space-y-3">
+        <BlurFade delay={BLUR_FADE_DELAY * 4}>
+          <SectionHeading>Projects</SectionHeading>
+        </BlurFade>
+        <div className="flex flex-col gap-y-3 mt-3">
+          {DATA.projects.map((project) => (
+            <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 4}>
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                tags={project.technologies}
+                links={project.links}
+              />
+            </BlurFade>
+          ))}
         </div>
       </section>
 
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <SectionHeading>Worked With</SectionHeading>
-          </BlurFade>
-          <div className="flex flex-col gap-y-3">
-            {DATA.work.map((work) => (
-              <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 5}>
-                <WorkCard
-                  key={work.company}
-                  title={work.company}
-                  subtitle={work.title}
-                  href={work.href}
-                  period={`${work.start} - ${work.end ?? "Present"}`}
-                  description={work.description}
-                />
-              </BlurFade>
-            ))}
-          </div>
+      <section id="work" className="space-y-3">
+        <BlurFade delay={BLUR_FADE_DELAY * 5}>
+          <SectionHeading>Worked With</SectionHeading>
+        </BlurFade>
+        <div className="flex flex-col gap-y-3 mt-3">
+          {DATA.work.map((work) => (
+            <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 5}>
+              <WorkCard
+                title={work.company}
+                subtitle={work.title}
+                href={work.href}
+                period={`${work.start} - ${work.end ?? "Present"}`}
+                description={work.description}
+              />
+            </BlurFade>
+          ))}
         </div>
       </section>
     </main>

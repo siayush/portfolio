@@ -123,6 +123,23 @@
     border-bottom: 1.5px dotted hsl(var(--muted-foreground) / 0.55);
   }
 
+  /* Inline dotted divider — used inside cards/figures */
+  .leader-dotted-card {
+    height: 0;
+    border-bottom: 1.5px dotted hsl(var(--foreground) / 0.25);
+  }
+
+  /* Diagonal stripe band — Making Software card-header texture */
+  .bg-stripes-blueprint {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 4px,
+      hsl(var(--blueprint) / 0.22) 4px,
+      hsl(var(--blueprint) / 0.22) 5px
+    );
+  }
+
   /* Drop cap on the lede paragraph of an article (serif, like Making Software) */
   .article-dropcap > p:first-of-type::first-letter {
     font-family: var(--font-serif), ui-serif, Georgia, serif;

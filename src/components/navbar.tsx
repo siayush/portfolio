@@ -6,8 +6,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "home" },
-  { href: "/blog", label: "blog" },
+  { href: "/", label: "HOME" },
+  { href: "/blog", label: "WRITING" },
 ];
 
 export default function NavBar() {
@@ -25,10 +25,10 @@ export default function NavBar() {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "px-2 py-1 rounded-md text-sm transition-colors",
+                  "font-pixel px-2 py-1 text-xs tracking-tight transition-colors rounded-none",
                   active
-                    ? "text-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-blueprint border-b-2 border-blueprint"
+                    : "text-muted-foreground hover:text-blueprint"
                 )}
               >
                 {label}

@@ -1,11 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
 
 interface Props {
@@ -22,54 +16,57 @@ interface Props {
 
 export function ProjectCard({ title, description, tags, link, links }: Props) {
   return (
-    <Card className="flex flex-col overflow-hidden border hover:border-foreground/20 hover:shadow-md transition-all duration-300 ease-out h-full">
-      <CardHeader className="px-4 pt-4 pb-2">
-        <div className="space-y-1.5">
-          <CardTitle className="text-base font-semibold tracking-tight">
-            {title}
-          </CardTitle>
-          <div className="hidden font-sans text-xs underline print:visible">
-            {link?.replace("https://", "").replace("www.", "").replace("/", "")}
-          </div>
-          <p className="text-pretty font-sans text-xs leading-relaxed text-muted-foreground">
-            {description}
-          </p>
+    <Card className="group flex flex-col overflow-hidden border border-foreground/15 hover:border-foreground/40 transition-colors duration-200 h-full rounded-none bg-transparent">
+      {/* Stripe band */}
+      <div className="bg-stripes-blueprint h-2 border-b border-foreground/15" />
+
+      <div className="flex flex-col flex-1 px-4 py-4">
+        <h3 className="font-serif text-foreground text-lg font-medium tracking-tight leading-tight">
+          {title}
+        </h3>
+        <div className="hidden font-sans text-xs underline print:visible mt-0.5">
+          {link?.replace("https://", "").replace("www.", "").replace("/", "")}
         </div>
-      </CardHeader>
-      <CardContent className="mt-auto px-4 pb-3">
+        <p className="mt-2 font-serif text-sm leading-snug text-foreground/85">
+          {description}
+        </p>
+
         {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {tags.map((tag) => (
-              <Badge
-                className="px-1.5 py-0 text-[10px] font-normal"
-                variant="secondary"
-                key={tag}
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+          <>
+            <div className="mt-4 mb-3 leader-dotted-card" aria-hidden="true" />
+            <div className="flex flex-wrap gap-1">
+              {tags.map((tag) => (
+                <Badge
+                  className="rounded-none border-foreground/30 bg-transparent text-foreground text-[10px] font-normal px-1.5 py-0 hover:border-foreground/60"
+                  variant="outline"
+                  key={tag}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </>
         )}
-      </CardContent>
-      {links && links.length > 0 && (
-        <CardFooter className="px-4 pb-4 pt-0">
-          <div className="flex flex-row flex-wrap items-start gap-1.5">
+
+        {links && links.length > 0 && (
+          <div className="mt-4 flex flex-row flex-wrap items-center gap-x-4 gap-y-1.5">
             {links.map((l, idx) => (
               <Link
                 href={l.href}
                 key={idx}
                 target="_blank"
                 aria-label={`${title} — ${l.type}`}
+                className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"
               >
-                <Badge className="flex gap-1.5 px-2 py-1 text-[10px] hover:bg-primary/80">
+                <span className="size-3 inline-flex items-center justify-center">
                   {l.icon}
-                  {l.type}
-                </Badge>
+                </span>
+                <span>[ {l.type.toUpperCase()} →&nbsp;]</span>
               </Link>
             ))}
           </div>
-        </CardFooter>
-      )}
+        )}
+      </div>
     </Card>
   );
 }
