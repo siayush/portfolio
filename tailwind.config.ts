@@ -21,6 +21,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        pixel: ["var(--font-pixel)", ...fontFamily.mono],
+        serif: ["var(--font-serif)", ...fontFamily.serif],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -57,6 +59,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         brand: "hsl(var(--brand))",
+        blueprint: "hsl(var(--blueprint))",
       },
       borderRadius: {
         lg: "var(--radius)",

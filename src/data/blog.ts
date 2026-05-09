@@ -35,6 +35,20 @@ export async function markdownToHTML(markdown: string) {
   return p.toString();
 }
 
+function countWords(markdown: string) {
+  return markdown
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`[^`]*`/g, "")
+    .replace(/[#>*_\-[\]()!]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
+export function formatWordCount(words: number) {
+  if (words < 1000) return `${words} WORDS`;
+  return `${(words / 1000).toFixed(1)}K WORDS`;
+}
+
 export async function getPost(slug: string) {
   const filePath = path.join("content", `${slug}.mdx`);
   let source = fs.readFileSync(filePath, "utf-8");
@@ -44,6 +58,7 @@ export async function getPost(slug: string) {
     source: content,
     metadata,
     slug,
+    wordCount: countWords(rawContent),
   };
 }
 
@@ -52,11 +67,12 @@ async function getAllPosts(dir: string) {
   return Promise.all(
     mdxFiles.map(async (file) => {
       let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
+      let { metadata, source, wordCount } = await getPost(slug);
       return {
         metadata,
         slug,
         source,
+        wordCount,
       };
     })
   );

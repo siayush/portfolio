@@ -26,6 +26,7 @@
       --accent-foreground: 0 0% 9%;
 
       --brand: 152 60% 36%;
+      --blueprint: 231 89% 53%;
 
       --destructive: 0 84.2% 60.2%;
       --destructive-foreground: 0 0% 98%;
@@ -60,6 +61,7 @@
       --accent-foreground: 0 0% 98%;
 
       --brand: 152 70% 55%;
+      --blueprint: 231 100% 72%;
 
       --destructive: 0 62.8% 30.6%;
       --destructive-foreground: 0 0% 98%;
@@ -88,6 +90,49 @@
     :focus-visible {
       @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background rounded-sm;
     }
+  }
+
+  /* Making Software-style dotted-square horizontal rule */
+  .rule-dotted {
+    height: 4px;
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--foreground) / 0.55) 50%,
+      transparent 50%
+    );
+    background-size: 8px 4px;
+    background-repeat: repeat-x;
+  }
+  .rule-dotted-blueprint {
+    height: 4px;
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--blueprint) / 0.85) 50%,
+      transparent 50%
+    );
+    background-size: 8px 4px;
+    background-repeat: repeat-x;
+  }
+
+  /* Dotted leader line — fills horizontal space between two flex children */
+  .leader-dotted {
+    flex: 1 1 auto;
+    align-self: end;
+    margin: 0 0.5rem 0.4em;
+    height: 0;
+    border-bottom: 1.5px dotted hsl(var(--muted-foreground) / 0.55);
+  }
+
+  /* Drop cap on the lede paragraph of an article (serif, like Making Software) */
+  .article-dropcap > p:first-of-type::first-letter {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-weight: 500;
+    color: hsl(var(--foreground));
+    float: left;
+    font-size: 3.5rem;
+    line-height: 0.9;
+    padding: 0.45rem 0.5rem 0 0;
+    margin-top: 0.15rem;
   }
 
   h3 code {
