@@ -44,24 +44,27 @@ export default async function BlogPage() {
             <li>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex items-baseline gap-1 py-1.5"
+                className="group flex items-baseline py-1.5"
               >
                 <span className="text-muted-foreground select-none">•</span>
-                <span className="ml-2 font-serif text-base tracking-tight text-foreground group-hover:text-blueprint group-hover:underline underline-offset-4 decoration-blueprint/60">
-                  {post.metadata.title.replace(/\.?$/, ".")}
-                </span>
-                <span className="leader-dotted" aria-hidden="true" />
-                <time
-                  dateTime={post.metadata.publishedAt}
-                  className="font-pixel text-[10px] tabular-nums text-muted-foreground shrink-0"
-                >
-                  {formatDate(post.metadata.publishedAt)}
-                </time>
-                <span className="font-pixel text-[10px] text-muted-foreground/60 mx-1.5">
-                  ·
-                </span>
-                <span className="font-pixel text-[10px] tabular-nums text-blueprint shrink-0">
-                  {formatWordCount(post.wordCount)}
+                <span className="ml-2 flex flex-1 flex-col gap-y-0.5">
+                  <span className="font-serif text-base tracking-tight text-foreground group-hover:text-blueprint group-hover:underline underline-offset-4 decoration-blueprint/60">
+                    {post.metadata.title.replace(/\.?$/, ".")}
+                  </span>
+                  <span className="flex items-baseline shrink-0">
+                    <time
+                      dateTime={post.metadata.publishedAt}
+                      className="font-pixel text-[10px] tabular-nums text-muted-foreground"
+                    >
+                      {formatDate(post.metadata.publishedAt)}
+                    </time>
+                    <span className="font-pixel text-[10px] text-muted-foreground/60 mx-1.5">
+                      ·
+                    </span>
+                    <span className="font-pixel text-[10px] tabular-nums text-blueprint">
+                      {formatWordCount(post.wordCount)}
+                    </span>
+                  </span>
                 </span>
               </Link>
             </li>
