@@ -96,6 +96,9 @@ export default function Page() {
                   <img
                     src="/loop-hero.svg"
                     alt="Tangled curve resolving into a smooth circle"
+                    width={320}
+                    height={180}
+                    decoding="async"
                     className="w-full h-auto"
                   />
                 </figure>

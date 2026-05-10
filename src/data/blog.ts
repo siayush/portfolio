@@ -120,3 +120,8 @@ async function getAllPosts(dir: string) {
 export async function getBlogPosts() {
   return getAllPosts(path.join(process.cwd(), "content"));
 }
+
+export function getBlogSlugs() {
+  const dir = path.join(process.cwd(), "content");
+  return getMDXFiles(dir).map((f) => path.basename(f, path.extname(f)));
+}

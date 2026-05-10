@@ -1,12 +1,19 @@
 import BlogTOC from "@/components/blog-toc";
 import BlurFade from "@/components/blur-fade";
-import { formatWordCount, getPost } from "@/data/blog";
+import { formatWordCount, getBlogSlugs, getPost } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
+
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getBlogSlugs().map((slug) => ({ slug }));
+}
 
 export default async function Blog({
   params,
