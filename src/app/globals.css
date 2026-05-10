@@ -159,40 +159,46 @@
   
   .prose pre,
   pre {
-    background: transparent !important;
     color: inherit !important;
     border: 1px solid hsl(var(--foreground) / 0.15) !important;
     border-radius: 0 !important;
-    padding: 1.5rem 0 1rem 0 !important;
+    padding: 1.75rem 0 1rem 0 !important;
     margin: 1.5rem 0 !important;
-    position: relative;
     overflow-x: auto;
+    background-color: transparent !important;
+    background-image:
+      linear-gradient(
+        to right,
+        hsl(var(--foreground) / 0.15),
+        hsl(var(--foreground) / 0.15)
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 4px,
+        hsl(var(--blueprint) / 0.22) 4px,
+        hsl(var(--blueprint) / 0.22) 5px
+      ) !important;
+    background-repeat: no-repeat, no-repeat !important;
+    background-size: 100% 1px, 100% 0.5rem !important;
+    background-position: 0 0.5rem, 0 0 !important;
   }
   .dark .prose pre,
   .dark pre {
     border-color: hsl(var(--foreground) / 0.25) !important;
-  }
-
-  .prose pre::before,
-  pre::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 0.5rem;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent 0,
-      transparent 4px,
-      hsl(var(--blueprint) / 0.22) 4px,
-      hsl(var(--blueprint) / 0.22) 5px
-    );
-    border-bottom: 1px solid hsl(var(--foreground) / 0.15);
-  }
-  .dark .prose pre::before,
-  .dark pre::before {
-    border-bottom-color: hsl(var(--foreground) / 0.25);
+    background-image:
+      linear-gradient(
+        to right,
+        hsl(var(--foreground) / 0.25),
+        hsl(var(--foreground) / 0.25)
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 4px,
+        hsl(var(--blueprint) / 0.22) 4px,
+        hsl(var(--blueprint) / 0.22) 5px
+      ) !important;
   }
 
   .prose pre code,
