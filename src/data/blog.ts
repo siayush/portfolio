@@ -18,6 +18,44 @@ function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+export type Heading = { level: 2 | 3; text: string; slug: string };
+
+export function extractHeadings(markdown: string): Heading[] {
+  const headings: Heading[] = [];
+  const lines = markdown
+    .replace(/```[\s\S]*?```/g, "")
+    .split("\n");
+  for (const line of lines) {
+    const m = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
+    if (!m) continue;
+    const level = m[1].length as 2 | 3;
+    const raw = m[2].replace(/`([^`]+)`/g, "$1");
+    const text = raw.replace(/^\d+\.\s+/, "");
+    headings.push({ level, text, slug: slugify(text) });
+  }
+  return headings;
+}
+
+function injectHeadingIds(html: string) {
+  return html.replace(
+    /<h([23])>(.*?)<\/h\1>/g,
+    (_, level: string, inner: string) => {
+      const cleaned = inner.replace(/^\d+\.\s+/, "");
+      const text = cleaned.replace(/<[^>]+>/g, "");
+      return `<h${level} id="${slugify(text)}">${cleaned}</h${level}>`;
+    },
+  );
+}
+
 export async function markdownToHTML(markdown: string) {
   const p = await unified()
     .use(remarkParse)
@@ -32,7 +70,7 @@ export async function markdownToHTML(markdown: string) {
     .use(rehypeStringify)
     .process(markdown);
 
-  return p.toString();
+  return injectHeadingIds(p.toString());
 }
 
 function countWords(markdown: string) {
@@ -59,6 +97,7 @@ export async function getPost(slug: string) {
     metadata,
     slug,
     wordCount: countWords(rawContent),
+    headings: extractHeadings(rawContent),
   };
 }
 

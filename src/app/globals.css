@@ -156,10 +156,43 @@
     @apply !text-lg md:!text-xl;
   }
   
+  .prose pre,
   pre {
-    @apply !px-0 rounded-lg overflow-x-auto py-4
+    background: transparent !important;
+    color: inherit !important;
+    border: 1px solid hsl(var(--foreground) / 0.15) !important;
+    border-radius: 0 !important;
+    padding: 1.5rem 0 1rem 0 !important;
+    margin: 1.5rem 0 !important;
+    position: relative;
+    overflow-x: auto;
   }
-   
+
+  .prose pre::before,
+  pre::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 4px,
+      hsl(var(--blueprint) / 0.22) 4px,
+      hsl(var(--blueprint) / 0.22) 5px
+    );
+    border-bottom: 1px solid hsl(var(--foreground) / 0.15);
+  }
+
+  .prose pre code,
+  pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
   pre [data-line] {
     @apply px-4
   }
@@ -167,23 +200,19 @@
   code {
     @apply text-sm md:text-base !leading-loose;
   }
-  
+
   pre > code {
     counter-reset: line;
   }
-  
+
   code[data-theme*=" "],
   code[data-theme*=" "] span {
     color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
   }
-   
-  @media (prefers-color-scheme: dark) {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
-    }
+
+  .dark code[data-theme*=" "],
+  .dark code[data-theme*=" "] span {
+    color: var(--shiki-dark);
   }
   
   code[data-line-numbers] {

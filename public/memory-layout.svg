@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 720 720" style="--color-cobalt-300:#B9C7FE;--color-cobalt-400:#7585FB;--color-cobalt-600:#1E37F0;--color-fg:#0A0F19;">
+  <defs>
+    <pattern id="grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="10" y2="0" stroke="var(--color-cobalt-400)" stroke-width="0.5" stroke-opacity="0.25"/>
+      <line x1="10" y1="0" x2="10" y2="10" stroke="var(--color-cobalt-400)" stroke-width="0.5" stroke-opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="720" fill="url(#grid)" fill-opacity="0.7"/>
+  <line x1="0.5" y1="0" x2="0.5" y2="720" stroke="var(--color-cobalt-400)" stroke-width="0.5" stroke-opacity="0.4"/>
+  <line x1="0" y1="719.5" x2="720" y2="719.5" stroke="var(--color-cobalt-400)" stroke-width="0.5" stroke-opacity="0.4"/>
+
+  <!-- Y-AXIS -->
+  <text x="22" y="18" font-family="ui-monospace, monospace" font-size="11" fill="var(--color-cobalt-600)" letter-spacing="0.04em">0xFFFF...</text>
+  <line x1="100" y1="26" x2="100" y2="694" stroke="var(--color-cobalt-600)" stroke-width="1"/>
+  <path d="M 95 26 L 100 14 L 105 26" stroke="var(--color-cobalt-600)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+  <text x="60" y="56" font-family="ui-monospace, monospace" font-size="10" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">HIGH</text>
+  <path d="M 95 694 L 100 706 L 105 694" stroke="var(--color-cobalt-600)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+  <text x="60" y="668" font-family="ui-monospace, monospace" font-size="10" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">LOW</text>
+  <text x="22" y="710" font-family="ui-monospace, monospace" font-size="11" fill="var(--color-cobalt-600)" letter-spacing="0.04em">0x0000</text>
+
+  <!-- ╭───── KERNEL SPACE ─────╮ -->
+  <rect x="140" y="26" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <text x="300" y="50" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">KERNEL SPACE</text>
+  <text x="300" y="68" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">OS-RESERVED · INACCESSIBLE</text>
+  <line x1="460" y1="54" x2="500" y2="54" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="51" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">Not part of user space.</text>
+  <text x="505" y="66" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">Touching it → segfault.</text>
+
+  <!-- USER SPACE divider -->
+  <line x1="140" y1="96" x2="460" y2="96" stroke="var(--color-cobalt-600)" stroke-width="0.6" stroke-dasharray="2 4" stroke-opacity="0.45"/>
+  <text x="300" y="108" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.5" letter-spacing="0.18em">— USER SPACE BELOW —</text>
+
+  <!-- ╭───── 1. STACK ─────╮ -->
+  <rect x="140" y="120" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="148" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="152" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">1</text>
+  <text x="305" y="144" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">STACK</text>
+  <text x="305" y="162" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">LOCAL VARS · RETURN ADDRESSES</text>
+  <line x1="460" y1="148" x2="500" y2="148" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="145" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">Function frames pushed</text>
+  <text x="505" y="160" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">on call, popped on return.</text>
+
+  <!-- grows ↓ -->
+  <line x1="300" y1="184" x2="300" y2="206" stroke="var(--color-cobalt-600)" stroke-width="1.4"/>
+  <path d="M 295 204 L 300 214 L 305 204" stroke="var(--color-cobalt-600)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+  <text x="318" y="202" font-family="ui-monospace, monospace" font-size="10" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">GROWS ↓</text>
+
+  <!-- ╭───── 2. MEMORY-MAPPED ─────╮ -->
+  <rect x="140" y="222" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="250" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="254" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">2</text>
+  <text x="305" y="246" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">MEMORY-MAPPED REGION</text>
+  <text x="305" y="264" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">SHARED LIBS · MMAP FILES</text>
+  <line x1="460" y1="250" x2="500" y2="250" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="247" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">libc.so, libm.so loaded here.</text>
+  <text x="505" y="262" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">Also: mmap(), shared memory.</text>
+
+  <!-- ╭───── FREE SPACE band ─────╮ -->
+  <rect x="140" y="294" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.45" fill="none"/>
+  <text x="300" y="326" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.55" letter-spacing="0.12em">FREE SPACE</text>
+
+  <!-- grows ↑ -->
+  <line x1="300" y1="356" x2="300" y2="378" stroke="var(--color-cobalt-600)" stroke-width="1.4"/>
+  <path d="M 295 358 L 300 348 L 305 358" stroke="var(--color-cobalt-600)" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+  <text x="318" y="370" font-family="ui-monospace, monospace" font-size="10" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">GROWS ↑</text>
+
+  <!-- ╭───── 3. HEAP ─────╮ -->
+  <rect x="140" y="394" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="422" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="426" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">3</text>
+  <text x="305" y="418" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">HEAP</text>
+  <text x="305" y="436" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">MALLOC · NEW · DYNAMIC ALLOC</text>
+  <line x1="460" y1="422" x2="500" y2="422" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="419" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">Managed by programmer</text>
+  <text x="505" y="434" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">or garbage collector.</text>
+
+  <!-- ╭───── 4. BSS ─────╮ -->
+  <rect x="140" y="458" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="486" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="490" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">4</text>
+  <text x="305" y="482" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">BSS SEGMENT</text>
+  <text x="305" y="500" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">UNINITIALIZED GLOBALS → ZEROED</text>
+  <line x1="460" y1="486" x2="500" y2="486" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="483" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">No space in binary on disk.</text>
+  <text x="505" y="498" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">OS fills with 0 at load.</text>
+
+  <!-- ╭───── 5. DATA ─────╮ -->
+  <rect x="140" y="522" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="550" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="554" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">5</text>
+  <text x="305" y="546" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">DATA (.DATA + .RODATA)</text>
+  <text x="305" y="564" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">INITIALIZED GLOBALS · CONSTANTS</text>
+  <line x1="460" y1="550" x2="500" y2="550" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="547" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">.data = read/write values.</text>
+  <text x="505" y="562" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">.rodata = read-only constants.</text>
+
+  <!-- ╭───── 6. TEXT ─────╮ -->
+  <rect x="140" y="586" width="320" height="56" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="614" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="618" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">6</text>
+  <text x="305" y="610" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">TEXT (CODE) SECTION</text>
+  <text x="305" y="628" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">MACHINE INSTRUCTIONS</text>
+  <line x1="460" y1="614" x2="500" y2="614" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="611" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">Read-only, executable.</text>
+  <text x="505" y="626" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">Shared across processes.</text>
+
+  <!-- ╭───── 7. RESERVED ─────╮ -->
+  <rect x="140" y="650" width="320" height="44" stroke="var(--color-cobalt-600)" stroke-width="1.5" fill="var(--color-cobalt-300)" fill-opacity="0.18"/>
+  <circle cx="160" cy="672" r="10" fill="var(--color-cobalt-600)"/>
+  <text x="160" y="676" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="white">7</text>
+  <text x="305" y="668" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="600" fill="var(--color-cobalt-600)" letter-spacing="0.08em">RESERVED (NULL PAGE)</text>
+  <text x="305" y="686" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--color-cobalt-600)" fill-opacity="0.7" letter-spacing="0.06em">UNMAPPED · CATCHES NULL PTRS</text>
+  <line x1="460" y1="672" x2="500" y2="672" stroke="var(--color-cobalt-600)" stroke-width="0.8" stroke-dasharray="3 3" stroke-opacity="0.6"/>
+  <text x="505" y="669" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)">Dereferencing 0x0000</text>
+  <text x="505" y="684" font-family="ui-serif, Georgia, serif" font-size="11" fill="var(--color-cobalt-600)" fill-opacity="0.65">→ instant segfault.</text>
+</svg>
