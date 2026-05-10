@@ -5,7 +5,6 @@ import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -102,14 +101,12 @@ export default async function Blog({
 
       <BlurFade delay={BLUR_FADE_DELAY * 4}>
         <div className="mt-4 max-w-[650px] flex items-center gap-3 font-pixel text-[10px] tracking-tight">
-          <Suspense fallback={<span className="h-3" />}>
-            <time
-              dateTime={post.metadata.publishedAt}
-              className="tabular-nums text-muted-foreground"
-            >
-              {formatDate(post.metadata.publishedAt)}
-            </time>
-          </Suspense>
+          <time
+            dateTime={post.metadata.publishedAt}
+            className="tabular-nums text-muted-foreground"
+          >
+            {formatDate(post.metadata.publishedAt)}
+          </time>
           <span className="text-muted-foreground/50">·</span>
           <span className="tabular-nums text-blueprint">
             {formatWordCount(post.wordCount)}

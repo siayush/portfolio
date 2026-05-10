@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/data/blog";
-
-const SITE_URL = "https://siayush.vercel.app";
+import { SITE_URL } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();

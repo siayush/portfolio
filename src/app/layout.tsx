@@ -1,7 +1,8 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
+import type { Metadata, Viewport } from "next";
 import { Inter as FontSans, Silkscreen, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -21,11 +22,9 @@ const fontPixel = Silkscreen({
 const fontSerif = Source_Serif_4({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   variable: "--font-serif",
 });
-
-const SITE_URL = "https://siayush.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,6 +53,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

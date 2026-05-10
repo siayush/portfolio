@@ -7,6 +7,8 @@ export const metadata = {
   description: "Things I've built",
 };
 
+export const dynamic = "force-static";
+
 const BLUR_FADE_DELAY = 0.04;
 
 export default function ProjectsPage() {

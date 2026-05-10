@@ -12,8 +12,8 @@ const BLUR_FADE_DELAY = 0.04;
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <h2 className="font-pixel text-foreground text-lg sm:text-xl tracking-tight">
-        {String(children).toUpperCase()}
+      <h2 className="font-pixel text-foreground text-lg sm:text-xl tracking-tight uppercase">
+        {children}
       </h2>
       <div className="h-px bg-foreground/30" />
     </div>

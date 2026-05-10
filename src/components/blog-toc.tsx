@@ -13,9 +13,9 @@ export default function BlogTOC({ headings }: { headings: Heading[] }) {
   useEffect(() => {
     if (headings.length === 0) return;
 
-    let ticking = false;
+    let frameId: number | null = null;
     const update = () => {
-      ticking = false;
+      frameId = null;
       let current: string | null = headings[0].slug;
       for (const h of headings) {
         const el = document.getElementById(h.slug);
@@ -30,15 +30,15 @@ export default function BlogTOC({ headings }: { headings: Heading[] }) {
     };
 
     const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
+      if (frameId !== null) return;
+      frameId = requestAnimationFrame(update);
     };
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
+      if (frameId !== null) cancelAnimationFrame(frameId);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
