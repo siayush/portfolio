@@ -40,7 +40,7 @@ export default function ProjectsPage() {
       <BlurFade delay={BLUR_FADE_DELAY * 3}>
         <div className="mt-10 flex items-center justify-between gap-3 font-pixel text-[10px] tracking-tight text-muted-foreground">
           <span>
-            {projects.length} {projects.length === 1 ? "PROJECT" : "PROJECTS"}
+            {projects.length} PROJECTS
           </span>
           <span>BUILT · {new Date().getFullYear()}</span>
         </div>
