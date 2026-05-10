@@ -2,6 +2,7 @@ import BlogTOC from "@/components/blog-toc";
 import BlurFade from "@/components/blur-fade";
 import { formatWordCount, getBlogSlugs, getPost } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -13,6 +14,40 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getBlogSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getPost(params.slug);
+  if (!post) return {};
+
+  const { title, summary, publishedAt } = post.metadata as {
+    title: string;
+    summary?: string;
+    publishedAt: string;
+  };
+  const url = `/blog/${post.slug}`;
+
+  return {
+    title,
+    description: summary,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description: summary,
+      url,
+      type: "article",
+      publishedTime: publishedAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: summary,
+    },
+  };
 }
 
 export default async function Blog({

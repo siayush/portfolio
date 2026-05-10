@@ -25,17 +25,22 @@ const fontSerif = Source_Serif_4({
   variable: "--font-serif",
 });
 
+const SITE_URL = "https://siayush.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(DATA.url),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
   },
   description: DATA.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
-    url: DATA.url,
+    url: SITE_URL,
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
