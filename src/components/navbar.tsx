@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
 
@@ -26,13 +27,20 @@ export default function NavBar() {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "font-pixel px-2 py-1 text-xs tracking-tight transition-colors rounded-none",
+                  "relative font-pixel px-2 py-1 text-xs tracking-tight transition-colors rounded-none",
                   active
-                    ? "text-blueprint border-b-2 border-blueprint"
+                    ? "text-blueprint"
                     : "text-muted-foreground hover:text-blueprint"
                 )}
               >
                 {label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute left-0 right-0 -bottom-px h-0.5 bg-blueprint"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
               </Link>
             </li>
           );
