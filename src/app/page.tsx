@@ -49,6 +49,8 @@ export default function Page() {
                 <Link
                   href={DATA.contact.social.GitHub.url}
                   aria-label="GitHub profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.github className="size-4" />
@@ -56,6 +58,8 @@ export default function Page() {
                 <Link
                   href={DATA.contact.social.LinkedIn.url}
                   aria-label="LinkedIn profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.linkedin className="size-4" />
@@ -63,6 +67,8 @@ export default function Page() {
                 <Link
                   href={DATA.contact.social.X.url}
                   aria-label="X (Twitter) profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.x className="size-4" />
