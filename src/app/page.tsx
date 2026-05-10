@@ -4,10 +4,8 @@ import { ProjectCard } from "@/components/project-card";
 import { WorkCard } from "@/components/work-card";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { MailIcon } from "lucide-react";
 import { Icons } from "@/components/icons";
-import { buttonVariants } from "@/components/ui/button";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -40,44 +38,32 @@ export default function Page() {
               </p>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
-              <div className="flex items-center gap-1 -ml-2 pt-1">
+              <div className="flex items-center gap-4 pt-1">
                 <Link
                   href={`mailto:${DATA.contact.email}`}
                   aria-label="Send email"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
-                  )}
+                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <MailIcon className="size-4" />
                 </Link>
                 <Link
                   href={DATA.contact.social.GitHub.url}
                   aria-label="GitHub profile"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
-                  )}
+                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.github className="size-4" />
                 </Link>
                 <Link
                   href={DATA.contact.social.LinkedIn.url}
                   aria-label="LinkedIn profile"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
-                  )}
+                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.linkedin className="size-4" />
                 </Link>
                 <Link
                   href={DATA.contact.social.X.url}
                   aria-label="X (Twitter) profile"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-9 text-muted-foreground hover:text-blueprint rounded-none",
-                  )}
+                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
                 >
                   <Icons.x className="size-4" />
                 </Link>
