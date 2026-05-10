@@ -1,4 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 720 720" style="--color-cobalt-300:#B9C7FE;--color-cobalt-400:#7585FB;--color-cobalt-600:#1E37F0;--color-fg:#0A0F19;">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 720 720">
+  <style>
+    svg {
+      --color-cobalt-300: #B9C7FE;
+      --color-cobalt-400: #7585FB;
+      --color-cobalt-600: #1E37F0;
+      --color-fg: #0A0F19;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --color-cobalt-300: #2B3A8C;
+        --color-cobalt-400: #A9B6FF;
+        --color-cobalt-600: #A9B6FF;
+        --color-fg: #FAFAFA;
+      }
+    }
+  </style>
   <defs>
     <pattern id="grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
       <line x1="0" y1="0" x2="10" y2="0" stroke="var(--color-cobalt-400)" stroke-width="0.5" stroke-opacity="0.25"/>
