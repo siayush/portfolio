@@ -22,16 +22,6 @@ export default async function BlogPage() {
   return (
     <section>
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <div className="flex items-end justify-between gap-3 mb-1">
-          <span className="font-pixel text-[10px] text-muted-foreground tracking-tight">
-            V1.0
-          </span>
-          <div className="flex items-center gap-2 font-pixel text-[10px] tracking-tight">
-            <span className="text-muted-foreground">DATE</span>
-            <span className="text-muted-foreground/60">·</span>
-            <span className="text-blueprint">WORDS</span>
-          </div>
-        </div>
         <h1 className="font-serif text-foreground text-3xl sm:text-4xl leading-none tracking-tight">
           Table of Contents.
         </h1>
