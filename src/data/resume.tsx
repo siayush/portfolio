@@ -81,7 +81,7 @@ export const DATA = {
 
   projects: [
     {
-      title: "ingestor",
+      title: "Ingestor",
       description:
         "scalable log ingestion and query system with real-time pipelines, advanced filtering, and a dashboard for exploring logs at volume.",
       technologies: [
@@ -142,7 +142,7 @@ export const DATA = {
       ],
     },
     {
-      title: "monkey",
+      title: "Monkey",
       description:
         "tree-walking interpreter for the Monkey language, built from scratch in Go. supports first-class functions, closures, arrays, and hash maps.",
       technologies: ["Go", "Interpreter", "Compilers"],
