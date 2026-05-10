@@ -63,7 +63,6 @@ export default async function Blog({
   }
 
   const titleWithPeriod = post.metadata.title.replace(/\.?$/, ".");
-  const crumb = post.metadata.title.toUpperCase();
 
   return (
     <section id="blog" className="relative">
@@ -72,16 +71,14 @@ export default async function Blog({
       <BlurFade delay={BLUR_FADE_DELAY}>
         <nav
           aria-label="Breadcrumb"
-          className="font-pixel text-[10px] tracking-tight mb-8 flex items-center gap-2"
+          className="font-pixel text-xs tracking-tight mb-8 flex items-center"
         >
           <Link
             href="/blog"
-            className="text-muted-foreground hover:text-blueprint"
+            className="text-foreground/70 hover:text-blueprint"
           >
-            ← BLOG
+            ← BACK
           </Link>
-          <span className="text-muted-foreground/50">/</span>
-          <span className="text-blueprint truncate">{crumb}</span>
         </nav>
       </BlurFade>
 
@@ -93,7 +90,7 @@ export default async function Blog({
 
       {post.metadata.summary ? (
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <p className="mt-3 max-w-[650px] font-serif text-muted-foreground text-base sm:text-lg leading-snug">
+          <p className="mt-3 max-w-[650px] font-serif text-foreground/70 text-base sm:text-lg leading-snug">
             {post.metadata.summary}
           </p>
         </BlurFade>
@@ -103,11 +100,11 @@ export default async function Blog({
         <div className="mt-4 max-w-[650px] flex items-center gap-3 font-pixel text-[10px] tracking-tight">
           <time
             dateTime={post.metadata.publishedAt}
-            className="tabular-nums text-muted-foreground"
+            className="tabular-nums text-foreground/70"
           >
             {formatDate(post.metadata.publishedAt)}
           </time>
-          <span className="text-muted-foreground/50">·</span>
+          <span className="text-foreground/50">·</span>
           <span className="tabular-nums text-blueprint">
             {formatWordCount(post.wordCount)}
           </span>
@@ -116,7 +113,7 @@ export default async function Blog({
 
       <BlurFade delay={BLUR_FADE_DELAY * 5}>
         <div
-          className="mt-10 mb-10 max-w-[650px] text-center font-pixel text-xs text-muted-foreground/70 select-none tracking-[0.4em]"
+          className="mt-10 mb-10 max-w-[650px] text-center font-pixel text-xs text-foreground/60 select-none tracking-[0.4em]"
           aria-hidden="true"
         >
           — — — — —

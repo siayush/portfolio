@@ -27,10 +27,10 @@ export default function NavBar() {
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative font-pixel px-2 py-1 text-xs tracking-tight transition-colors rounded-none",
+                  "relative font-pixel px-2 py-1 text-sm tracking-tight transition-colors rounded-none",
                   active
                     ? "text-blueprint"
-                    : "text-muted-foreground hover:text-blueprint"
+                    : "text-foreground/70 hover:text-blueprint"
                 )}
               >
                 {label}
