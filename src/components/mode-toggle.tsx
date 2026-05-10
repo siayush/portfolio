@@ -13,7 +13,7 @@ export function ModeToggle() {
       type="button"
       size="icon"
       aria-label="Toggle theme"
-      className="size-9 text-muted-foreground hover:text-foreground"
+      className="size-9 rounded-none text-muted-foreground hover:text-blueprint hover:bg-transparent"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       <SunIcon className="h-[1.1rem] w-[1.1rem] rotate-0 scale-100 transition-transform duration-300 dark:-rotate-90 dark:scale-0" />

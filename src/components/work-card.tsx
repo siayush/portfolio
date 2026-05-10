@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { ChevronRightIcon } from "lucide-react";
+import { Building } from "lucide-react";
 import Link from "next/link";
 
 interface WorkCardProps {
@@ -18,40 +18,51 @@ export const WorkCard = ({
   description,
 }: WorkCardProps) => {
   return (
-    <Link
-      href={href || "#"}
-      target={href ? "_blank" : undefined}
-      className="group block"
-    >
-      <Card className="overflow-hidden border border-foreground/15 transition-colors hover:border-foreground/40 rounded-none bg-transparent">
-        {/* Stripe band */}
-        <div className="bg-stripes-blueprint h-2 border-b border-foreground/15" />
+    <Card className="group flex flex-col overflow-hidden border border-foreground/15 dark:border-foreground/25 hover:border-foreground/40 dark:hover:border-foreground/55 transition-colors duration-200 h-full rounded-none bg-transparent">
+      {/* Stripe band */}
+      <div className="bg-stripes-blueprint h-2 border-b border-foreground/15 dark:border-foreground/25" />
 
-        <div className="px-4 py-4">
-          <div className="flex items-baseline justify-between gap-x-3">
-            <h3 className="inline-flex items-center font-serif text-foreground text-lg font-medium tracking-tight truncate">
-              {title}
-              <ChevronRightIcon className="size-4 ml-0.5 translate-x-0 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
-            </h3>
-            <div className="font-pixel text-[10px] tabular-nums text-muted-foreground shrink-0">
-              {period}
-            </div>
+      <div className="flex flex-col flex-1 px-4 py-4">
+        <div className="flex items-baseline justify-between gap-x-3">
+          <h3 className="font-serif text-foreground text-lg font-medium tracking-tight truncate">
+            {title}
+          </h3>
+          <div className="font-pixel text-[10px] tabular-nums text-muted-foreground shrink-0">
+            {period}
           </div>
-          {subtitle && (
-            <div className="mt-1 font-pixel text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-              [ {subtitle} ]
-            </div>
-          )}
-          {description && (
-            <>
-              <div className="mt-3 mb-3 leader-dotted-card" aria-hidden="true" />
-              <p className="font-serif text-sm leading-snug text-foreground/85">
-                {description}
-              </p>
-            </>
-          )}
         </div>
-      </Card>
-    </Link>
+
+        {subtitle && (
+          <div className="mt-1 font-pixel text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+            [ {subtitle} ]
+          </div>
+        )}
+
+        {description && (
+          <>
+            <div className="mt-4 mb-3 leader-dotted-card" aria-hidden="true" />
+            <p className="font-serif text-sm leading-snug text-foreground/85">
+              {description}
+            </p>
+          </>
+        )}
+
+        {href && (
+          <div className="mt-4 flex flex-row flex-wrap items-center gap-x-4 gap-y-1.5">
+            <Link
+              href={href}
+              target="_blank"
+              aria-label={`${title} — Company website`}
+              className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"
+            >
+              <span className="size-3 inline-flex items-center justify-center">
+                <Building className="size-3" />
+              </span>
+              <span>[ COMPANY →&nbsp;]</span>
+            </Link>
+          </div>
+        )}
+      </div>
+    </Card>
   );
 };

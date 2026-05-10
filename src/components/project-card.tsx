@@ -16,9 +16,9 @@ interface Props {
 
 export function ProjectCard({ title, description, tags, link, links }: Props) {
   return (
-    <Card className="group flex flex-col overflow-hidden border border-foreground/15 hover:border-foreground/40 transition-colors duration-200 h-full rounded-none bg-transparent">
+    <Card className="group flex flex-col overflow-hidden border border-foreground/15 dark:border-foreground/25 hover:border-foreground/40 dark:hover:border-foreground/55 transition-colors duration-200 h-full rounded-none bg-transparent">
       {/* Stripe band */}
-      <div className="bg-stripes-blueprint h-2 border-b border-foreground/15" />
+      <div className="bg-stripes-blueprint h-2 border-b border-foreground/15 dark:border-foreground/25" />
 
       <div className="flex flex-col flex-1 px-4 py-4">
         <h3 className="font-serif text-foreground text-lg font-medium tracking-tight leading-tight">
