@@ -37,7 +37,7 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
             <div className="flex flex-wrap gap-1">
               {tags.map((tag) => (
                 <Badge
-                  className="rounded-none border-foreground/30 bg-transparent text-foreground text-[10px] font-normal px-1.5 py-0 hover:border-foreground/60"
+                  className="rounded-none border-foreground/30 bg-transparent text-foreground text-[10px] font-normal px-1.5 py-0 hover:border-foreground/60 !transition-none"
                   variant="outline"
                   key={tag}
                 >
