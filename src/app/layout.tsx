@@ -1,3 +1,4 @@
+import { MotionProvider } from "@/components/motion-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
@@ -76,9 +77,11 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <NavBar />
-          {children}
-          <Analytics />
+          <MotionProvider>
+            <NavBar />
+            {children}
+            <Analytics />
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

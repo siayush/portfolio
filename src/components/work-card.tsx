@@ -22,7 +22,7 @@ export const WorkCard = ({
       {/* Stripe band */}
       <div className="bg-stripes-blueprint h-2 border-b border-foreground/15 dark:border-foreground/25" />
 
-      <div className="flex flex-col flex-1 px-4 py-4">
+      <div className="flex flex-col flex-1 p-4">
         <div className="flex items-baseline justify-between gap-x-3">
           <h3 className="font-serif text-foreground text-lg font-medium tracking-tight truncate">
             {title}

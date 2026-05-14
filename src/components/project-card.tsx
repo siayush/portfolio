@@ -20,7 +20,7 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
       {/* Stripe band */}
       <div className="bg-stripes-blueprint h-2 border-b border-foreground/15 dark:border-foreground/25" />
 
-      <div className="flex flex-col flex-1 px-4 py-4">
+      <div className="flex flex-col flex-1 p-4">
         <h3 className="font-serif text-foreground text-lg font-medium tracking-tight leading-tight">
           {title}
         </h3>
@@ -50,10 +50,10 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
 
         {links && links.length > 0 && (
           <div className="mt-4 flex flex-row flex-wrap items-center gap-x-4 gap-y-1.5">
-            {links.map((l, idx) => (
+            {links.map((l) => (
               <Link
                 href={l.href}
-                key={idx}
+                key={l.href}
                 target="_blank"
                 aria-label={`${title} — ${l.type}`}
                 className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"

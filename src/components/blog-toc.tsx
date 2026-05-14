@@ -56,12 +56,12 @@ export default function BlogTOC({ headings }: { headings: Heading[] }) {
       </h2>
       <nav className="mt-4">
         <ul className="flex flex-col gap-1.5">
-          {headings.map((h, i) => {
+          {headings.map((h) => {
             const isActive = h.slug === activeSlug;
             const label = h.text.replace(/^\d+\.\s+/, "");
             return (
               <li
-                key={`${h.slug}-${i}`}
+                key={h.slug}
                 className={
                   "flex items-baseline gap-2 " +
                   (h.level === 3 ? "pl-4 text-[12px]" : "text-[13px]")

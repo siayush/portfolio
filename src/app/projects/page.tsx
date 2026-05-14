@@ -10,6 +10,7 @@ export const metadata = {
 export const dynamic = "force-static";
 
 const BLUR_FADE_DELAY = 0.04;
+const BUILD_YEAR = new Date().getFullYear();
 
 export default function ProjectsPage() {
   const projects = DATA.projects;
@@ -44,7 +45,7 @@ export default function ProjectsPage() {
           <span>
             {projects.length} PROJECTS
           </span>
-          <span>BUILT · {new Date().getFullYear()}</span>
+          <span>BUILT · {BUILD_YEAR}</span>
         </div>
       </BlurFade>
     </section>

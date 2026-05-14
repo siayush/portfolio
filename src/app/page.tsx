@@ -4,8 +4,14 @@ import { ProjectCard } from "@/components/project-card";
 import { WorkCard } from "@/components/work-card";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
+import Image from "next/image";
 import { MailIcon } from "lucide-react";
 import { Icons } from "@/components/icons";
+
+export const metadata = {
+  title: DATA.name,
+  description: DATA.description,
+};
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -22,10 +28,10 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-12">
+    <main className="flex flex-col min-h-[100dvh] gap-y-12">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-6">
-          <div className="flex-col flex flex-1 space-y-3">
+          <div className="flex-col flex flex-1 gap-y-3">
             <BlurFadeText
               delay={BLUR_FADE_DELAY}
               className="font-pixel text-blueprint text-3xl sm:text-5xl xl:text-6xl/none leading-none tracking-tight"
@@ -84,7 +90,7 @@ export default function Page() {
                   <p className="font-serif text-sm leading-snug text-foreground/85">
                     Most engineering starts as a tangle and quietly converges
                     on the curve underneath. The interesting work is in the
-                    middle frames — the part where it doesn&apos;t look like
+                    middle frames, the part where it doesn&apos;t look like
                     anything yet.
                   </p>
                   <p className="font-pixel text-[9px] tracking-[0.15em] text-muted-foreground pt-1">
@@ -92,13 +98,12 @@ export default function Page() {
                   </p>
                 </div>
                 <figure className="w-full">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="/loop-hero.svg"
                     alt="Tangled curve resolving into a smooth circle"
                     width={320}
                     height={180}
-                    decoding="async"
+                    priority
                     className="w-full h-auto"
                   />
                 </figure>
