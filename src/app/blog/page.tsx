@@ -1,5 +1,5 @@
 import BlurFade from "@/components/blur-fade";
-import { formatWordCount, getBlogPosts } from "@/data/blog";
+import { getBlogPosts } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
@@ -18,8 +18,6 @@ export default function BlogPage() {
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime(),
   );
-
-  const totalWords = posts.reduce((acc, p) => acc + p.wordCount, 0);
 
   return (
     <section>
@@ -50,12 +48,6 @@ export default function BlogPage() {
                     >
                       {formatDate(post.metadata.publishedAt)}
                     </time>
-                    <span className="font-pixel text-[10px] text-foreground/50 mx-1.5">
-                      ·
-                    </span>
-                    <span className="font-pixel text-[10px] tabular-nums text-blueprint">
-                      {formatWordCount(post.wordCount)}
-                    </span>
                   </span>
                 </span>
               </Link>
@@ -63,15 +55,6 @@ export default function BlogPage() {
           </BlurFade>
         ))}
       </ul>
-
-      <BlurFade delay={BLUR_FADE_DELAY * 3}>
-        <div className="mt-10 flex items-center justify-between gap-3 font-pixel text-[10px] tracking-tight text-foreground/70">
-          <span>
-            {posts.length} {posts.length === 1 ? "ENTRY" : "ENTRIES"}
-          </span>
-          <span>TOTAL · {formatWordCount(totalWords)}</span>
-        </div>
-      </BlurFade>
     </section>
   );
 }

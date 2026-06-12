@@ -1,6 +1,6 @@
 import BlogTOC from "@/components/blog-toc";
 import BlurFade from "@/components/blur-fade";
-import { formatWordCount, getBlogSlugs, getPost } from "@/data/blog";
+import { getBlogSlugs, getPost } from "@/data/blog";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -100,10 +100,6 @@ export default async function Blog({
           >
             {formatDate(post.metadata.publishedAt)}
           </time>
-          <span className="text-foreground/50">·</span>
-          <span className="tabular-nums text-blueprint">
-            {formatWordCount(post.wordCount)}
-          </span>
         </div>
       </BlurFade>
 
