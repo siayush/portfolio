@@ -6,7 +6,6 @@ interface Props {
   title: string;
   description: string;
   tags: readonly string[];
-  link?: string;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -14,7 +13,7 @@ interface Props {
   }[];
 }
 
-export function ProjectCard({ title, description, tags, link, links }: Props) {
+export function ProjectCard({ title, description, tags, links }: Props) {
   return (
     <Card className="group flex flex-col overflow-hidden border border-foreground/15 dark:border-foreground/25 hover:border-foreground/40 dark:hover:border-foreground/55 transition-colors duration-200 h-full rounded-none bg-transparent">
       {/* Stripe band */}
@@ -24,9 +23,6 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
         <h3 className="font-serif text-foreground text-lg font-medium tracking-tight leading-tight">
           {title}
         </h3>
-        <div className="hidden font-sans text-xs underline print:visible mt-0.5">
-          {link?.replace("https://", "").replace("www.", "").replace("/", "")}
-        </div>
         <p className="mt-2 font-serif text-sm leading-snug text-foreground/85">
           {description}
         </p>
@@ -55,6 +51,7 @@ export function ProjectCard({ title, description, tags, link, links }: Props) {
                 href={l.href}
                 key={l.href}
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`${title} — ${l.type}`}
                 className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"
               >

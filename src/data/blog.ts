@@ -7,15 +7,19 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
-// type Metadata = {
-//   title: string;
-//   publishedAt: string;
-//   summary: string;
-//   image?: string;
-// };
+export type PostMetadata = {
+  title: string;
+  publishedAt: string;
+  summary?: string;
+  image?: string;
+};
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+const CONTENT_DIR = path.join(process.cwd(), "content");
+
+function getMarkdownFiles() {
+  return fs
+    .readdirSync(CONTENT_DIR)
+    .filter((file) => path.extname(file) === ".md");
 }
 
 export function slugify(text: string) {
@@ -27,31 +31,44 @@ export function slugify(text: string) {
     .replace(/-+/g, "-");
 }
 
+// Returns a slugify that appends -1, -2, … on repeated text so heading ids
+// stay unique. extractHeadings and injectHeadingIds each use a fresh slugger
+// over the same headings in the same order, so their slugs always agree.
+function makeSlugger() {
+  const counts = new Map<string, number>();
+  return (text: string) => {
+    const base = slugify(text);
+    const n = counts.get(base) ?? 0;
+    counts.set(base, n + 1);
+    return n === 0 ? base : `${base}-${n}`;
+  };
+}
+
 export type Heading = { level: 2 | 3; text: string; slug: string };
 
 export function extractHeadings(markdown: string): Heading[] {
   const headings: Heading[] = [];
-  const lines = markdown
-    .replace(/```[\s\S]*?```/g, "")
-    .split("\n");
+  const slug = makeSlugger();
+  const lines = markdown.replace(/```[\s\S]*?```/g, "").split("\n");
   for (const line of lines) {
     const m = /^(#{2,3})\s+(.+?)\s*$/.exec(line);
     if (!m) continue;
     const level = m[1].length as 2 | 3;
     const raw = m[2].replace(/`([^`]+)`/g, "$1");
     const text = raw.replace(/^\d+\.\s+/, "");
-    headings.push({ level, text, slug: slugify(text) });
+    headings.push({ level, text, slug: slug(text) });
   }
   return headings;
 }
 
 function injectHeadingIds(html: string) {
+  const slug = makeSlugger();
   return html.replace(
     /<h([23])>(.*?)<\/h\1>/g,
     (_, level: string, inner: string) => {
       const cleaned = inner.replace(/^\d+\.\s+/, "");
       const text = cleaned.replace(/<[^>]+>/g, "");
-      return `<h${level} id="${slugify(text)}">${cleaned}</h${level}>`;
+      return `<h${level} id="${slug(text)}">${cleaned}</h${level}>`;
     },
   );
 }
@@ -88,40 +105,34 @@ export function formatWordCount(words: number) {
 }
 
 export async function getPost(slug: string) {
-  const filePath = path.join("content", `${slug}.mdx`);
-  let source = fs.readFileSync(filePath, "utf-8");
-  const { content: rawContent, data: metadata } = matter(source);
-  const content = await markdownToHTML(rawContent);
+  const filePath = path.join(CONTENT_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  const source = fs.readFileSync(filePath, "utf-8");
+  const { content: rawContent, data } = matter(source);
   return {
-    source: content,
-    metadata,
+    source: await markdownToHTML(rawContent),
+    metadata: data as PostMetadata,
     slug,
     wordCount: countWords(rawContent),
     headings: extractHeadings(rawContent),
   };
 }
 
-async function getAllPosts(dir: string) {
-  let mdxFiles = getMDXFiles(dir);
-  return Promise.all(
-    mdxFiles.map(async (file) => {
-      let slug = path.basename(file, path.extname(file));
-      let { metadata, source, wordCount } = await getPost(slug);
-      return {
-        metadata,
-        slug,
-        source,
-        wordCount,
-      };
-    })
-  );
-}
-
-export async function getBlogPosts() {
-  return getAllPosts(path.join(process.cwd(), "content"));
+// Frontmatter + word count only — no HTML rendering. Listing pages and the
+// sitemap should use this instead of paying for highlighting per post.
+export function getBlogPosts() {
+  return getMarkdownFiles().map((file) => {
+    const slug = path.basename(file, path.extname(file));
+    const source = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
+    const { content, data } = matter(source);
+    return {
+      slug,
+      metadata: data as PostMetadata,
+      wordCount: countWords(content),
+    };
+  });
 }
 
 export function getBlogSlugs() {
-  const dir = path.join(process.cwd(), "content");
-  return getMDXFiles(dir).map((f) => path.basename(f, path.extname(f)));
+  return getMarkdownFiles().map((f) => path.basename(f, path.extname(f)));
 }

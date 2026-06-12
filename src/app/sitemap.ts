@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/data/blog";
 import { SITE_URL } from "@/lib/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getBlogPosts();
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getBlogPosts();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,

@@ -23,11 +23,7 @@ export async function generateMetadata({
   const post = await getPost(params.slug);
   if (!post) return {};
 
-  const { title, summary, publishedAt } = post.metadata as {
-    title: string;
-    summary?: string;
-    publishedAt: string;
-  };
+  const { title, summary, publishedAt } = post.metadata;
   const url = `/blog/${post.slug}`;
 
   return {
@@ -56,7 +52,7 @@ export default async function Blog({
     slug: string;
   };
 }) {
-  let post = await getPost(params.slug);
+  const post = await getPost(params.slug);
 
   if (!post) {
     notFound();
@@ -122,7 +118,7 @@ export default async function Blog({
 
       <BlurFade delay={BLUR_FADE_DELAY * 6}>
         <article
-          className="article-dropcap prose prose-sm sm:prose-base dark:prose-invert max-w-[650px] font-serif prose-p:font-serif prose-li:font-serif prose-headings:font-sans prose-headings:tracking-tight prose-headings:text-foreground prose-headings:scroll-mt-24 prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-a:text-blueprint prose-a:no-underline hover:prose-a:underline prose-p:text-justify prose-p:hyphens-auto prose-img:mx-auto"
+          className="article-dropcap prose prose-sm sm:prose-base dark:prose-invert max-w-[650px] font-serif prose-p:font-serif prose-li:font-serif prose-headings:font-sans prose-headings:tracking-tight prose-headings:text-foreground prose-headings:scroll-mt-24 prose-p:text-foreground prose-li:text-foreground prose-strong:text-foreground prose-a:text-blueprint prose-a:no-underline hover:prose-a:underline prose-img:mx-auto"
           // eslint-disable-next-line react/no-danger -- HTML is generated at build time from trusted local markdown via remark/rehype
           dangerouslySetInnerHTML={{ __html: post.source }}
         ></article>

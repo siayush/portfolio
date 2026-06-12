@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { AnimatePresence, m, useReducedMotion, Variants } from "framer-motion";
+import { m, useReducedMotion, Variants } from "framer-motion";
 import { useMemo } from "react";
 
 interface BlurFadeTextProps {
@@ -11,7 +11,6 @@ interface BlurFadeTextProps {
     hidden: { y: number };
     visible: { y: number };
   };
-  duration?: number;
   characterDelay?: number;
   delay?: number;
   yOffset?: number;
@@ -45,46 +44,40 @@ const BlurFadeText = ({
   if (animateByCharacter) {
     return (
       <div className="flex">
-        <AnimatePresence>
-          {characters.map(({ char, id }, i) => (
-            <m.span
-              key={id}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={combinedVariants}
-              transition={{
-                delay: delay + (shouldReduceMotion ? 0 : i * characterDelay),
-                ease: "easeOut",
-              }}
-              className={cn("inline-block", className)}
-              style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
-            >
-              {char}
-            </m.span>
-          ))}
-        </AnimatePresence>
+        {characters.map(({ char, id }, i) => (
+          <m.span
+            key={id}
+            initial="hidden"
+            animate="visible"
+            variants={combinedVariants}
+            transition={{
+              delay: delay + (shouldReduceMotion ? 0 : i * characterDelay),
+              ease: "easeOut",
+            }}
+            className={cn("inline-block", className)}
+            style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
+          >
+            {char}
+          </m.span>
+        ))}
       </div>
     );
   }
 
   return (
     <div className="flex">
-      <AnimatePresence>
-        <m.span
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={combinedVariants}
-          transition={{
-            delay,
-            ease: "easeOut",
-          }}
-          className={cn("inline-block", className)}
-        >
-          {text}
-        </m.span>
-      </AnimatePresence>
+      <m.span
+        initial="hidden"
+        animate="visible"
+        variants={combinedVariants}
+        transition={{
+          delay,
+          ease: "easeOut",
+        }}
+        className={cn("inline-block", className)}
+      >
+        {text}
+      </m.span>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, m, useReducedMotion, Variants } from "framer-motion";
+import { m, useReducedMotion, Variants } from "framer-motion";
 
 interface BlurFadeProps {
   children: React.ReactNode;
@@ -35,22 +35,19 @@ const BlurFade = ({
       };
   const combinedVariants = variant || defaultVariants;
   return (
-    <AnimatePresence>
-      <m.div
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        variants={combinedVariants}
-        transition={{
-          delay: 0.04 + delay,
-          duration: shouldReduceMotion ? 0 : duration,
-          ease: "easeOut",
-        }}
-        className={className}
-      >
-        {children}
-      </m.div>
-    </AnimatePresence>
+    <m.div
+      initial="hidden"
+      animate="visible"
+      variants={combinedVariants}
+      transition={{
+        delay: 0.04 + delay,
+        duration: shouldReduceMotion ? 0 : duration,
+        ease: "easeOut",
+      }}
+      className={className}
+    >
+      {children}
+    </m.div>
   );
 };
 

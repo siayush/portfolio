@@ -1,17 +1,10 @@
 import BlurFade from "@/components/blur-fade";
 import BlurFadeText from "@/components/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
+import { SocialLinks } from "@/components/social-links";
 import { WorkCard } from "@/components/work-card";
 import { DATA } from "@/data/resume";
-import Link from "next/link";
 import Image from "next/image";
-import { MailIcon } from "lucide-react";
-import { Icons } from "@/components/icons";
-
-export const metadata = {
-  title: DATA.name,
-  description: DATA.description,
-};
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -22,6 +15,32 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
         {children}
       </h2>
       <div className="h-px bg-foreground/30" />
+    </div>
+  );
+}
+
+function SkillList({
+  heading,
+  skills,
+}: {
+  heading: string;
+  skills: readonly string[];
+}) {
+  return (
+    <div>
+      <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
+        {heading}
+      </h3>
+      <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
+        {skills.map((skill) => (
+          <li key={skill} className="flex items-baseline gap-1.5">
+            <span aria-hidden="true" className="text-foreground/40 select-none">
+              •
+            </span>
+            <span>{skill}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -44,42 +63,7 @@ export default function Page() {
               </p>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
-              <div className="flex items-center gap-4 pt-1">
-                <Link
-                  href={`mailto:${DATA.contact.email}`}
-                  aria-label="Send email"
-                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
-                >
-                  <MailIcon className="size-4" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.GitHub.url}
-                  aria-label="GitHub profile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
-                >
-                  <Icons.github className="size-4" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.LinkedIn.url}
-                  aria-label="LinkedIn profile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
-                >
-                  <Icons.linkedin className="size-4" />
-                </Link>
-                <Link
-                  href={DATA.contact.social.X.url}
-                  aria-label="X (Twitter) profile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-muted-foreground hover:text-blueprint transition-colors"
-                >
-                  <Icons.x className="size-4" />
-                </Link>
-              </div>
+              <SocialLinks />
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 1.8}>
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-[1fr_320px] gap-x-6 gap-y-3 items-start">
@@ -133,48 +117,8 @@ export default function Page() {
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <div className="flex flex-col gap-y-5 mt-3">
-            <div>
-              <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
-                Languages
-              </h3>
-              <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
-                {DATA.languages.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-baseline gap-1.5"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="text-foreground/40 select-none"
-                    >
-                      •
-                    </span>
-                    <span>{skill}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
-                Technologies
-              </h3>
-              <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
-                {DATA.technologies.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-baseline gap-1.5"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="text-foreground/40 select-none"
-                    >
-                      •
-                    </span>
-                    <span>{skill}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <SkillList heading="Languages" skills={DATA.languages} />
+            <SkillList heading="Technologies" skills={DATA.technologies} />
           </div>
         </BlurFade>
       </section>

@@ -7,6 +7,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter as FontSans, Silkscreen, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+import Footer from "@/components/footer";
 import NavBar from "@/components/navbar";
 
 const fontSans = FontSans({
@@ -76,10 +77,11 @@ export default function RootLayout({
           fontSerif.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <MotionProvider>
             <NavBar />
             {children}
+            <Footer />
             <Analytics />
           </MotionProvider>
         </ThemeProvider>

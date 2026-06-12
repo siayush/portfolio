@@ -12,8 +12,8 @@ const BLUR_FADE_DELAY = 0.04;
 
 export const dynamic = "force-static";
 
-export default async function BlogPage() {
-  const posts = (await getBlogPosts()).sort(
+export default function BlogPage() {
+  const posts = getBlogPosts().sort(
     (a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime(),

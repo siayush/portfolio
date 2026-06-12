@@ -52,6 +52,7 @@ export const WorkCard = ({
             <Link
               href={href}
               target="_blank"
+              rel="noopener noreferrer"
               aria-label={`${title} — Company website`}
               className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"
             >

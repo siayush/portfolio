@@ -2,14 +2,10 @@ import { Icons } from "@/components/icons";
 
 export const DATA = {
   name: "Ayush Gupta",
-  initials: "AG",
-  url: "https://github.com/siAysuh",
   location: "Delhi, India",
-  locationLink: "https://www.google.com/maps/place/Delhi",
   description: "Software Engineer",
   summary:
     "software engineer working on backend, databases, and system architecture. drawn to low-level engineering and the details of how things actually work under the hood.",
-  avatarUrl: "https://avatars.githubusercontent.com/u/28400861?v=4",
   languages: ["C", "Go", "Typescript", "JavaScript", "Python"],
   technologies: [
     "MySQL",
@@ -44,10 +40,7 @@ export const DATA = {
     {
       company: "Primathon",
       href: "https://primathon.in/",
-      badges: [],
-      location: "Hybrid",
       title: "SDE Backend",
-      logoUrl: "/atomic.png",
       start: "May 2025",
       end: "Present",
       description:
@@ -56,10 +49,7 @@ export const DATA = {
     {
       company: "Infogain",
       href: "https://www.infogain.com/",
-      badges: [],
-      location: "Remote",
       title: "Software Engineer",
-      logoUrl: "/atomic.png",
       start: "Dec 2021",
       end: "April 2025",
       description:
@@ -68,10 +58,7 @@ export const DATA = {
     {
       company: "NNT",
       href: "https://www.linkedin.com/company/nggawe-nirman/",
-      badges: [],
-      location: "Remote",
       title: "Software Engineer Intern",
-      logoUrl: "/atomic.png",
       start: "June 2021",
       end: "Nov 2021",
       description:
@@ -93,11 +80,6 @@ export const DATA = {
         "React",
       ],
       links: [
-        // {
-        //   type: "Website",
-        //   href: "",
-        //   icon: <Icons.globe className="size-3" />,
-        // },
         {
           type: "Source",
           href: "https://github.com/siAyush/ingestor",
@@ -111,11 +93,6 @@ export const DATA = {
         "classic machine learning models and algorithms implemented from scratch with only NumPy.",
       technologies: ["Python", "NumPy"],
       links: [
-        // {
-        //   type: "Website",
-        //   href: "",
-        //   icon: <Icons.globe className="size-3" />,
-        // },
         {
           type: "Source",
           href: "https://github.com/siAyush/ScratchML",
@@ -129,11 +106,6 @@ export const DATA = {
         "a tour booking app with authentication, authorization, and a RESTful Node.js backend.",
       technologies: ["NodeJS", "ExpressJs", "MongoDB"],
       links: [
-        // {
-        //   type: "Website",
-        //   href: "",
-        //   icon: <Icons.globe className="size-3" />,
-        // },
         {
           type: "Source",
           href: "https://github.com/siAyush/Natours",
@@ -147,11 +119,6 @@ export const DATA = {
         "tree-walking interpreter for the Monkey language, built from scratch in Go. supports first-class functions, closures, arrays, and hash maps.",
       technologies: ["Go", "Interpreter", "Compilers"],
       links: [
-        // {
-        //   type: "Website",
-        //   href: "",
-        //   icon: <Icons.globe className="size-3" />,
-        // },
         {
           type: "Source",
           href: "https://github.com/siAyush/monkey",
