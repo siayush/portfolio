@@ -1,22 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" shape-rendering="crispEdges">
-  <g fill="#000000">
-    <rect x="10" y="2" width="4" height="4"/>
-    <rect x="14" y="2" width="4" height="4"/>
-    <rect x="18" y="2" width="4" height="4"/>
-    <rect x="6" y="6" width="4" height="4"/>
-    <rect x="22" y="6" width="4" height="4"/>
-    <rect x="6" y="10" width="4" height="4"/>
-    <rect x="22" y="10" width="4" height="4"/>
-    <rect x="6" y="14" width="4" height="4"/>
-    <rect x="10" y="14" width="4" height="4"/>
-    <rect x="14" y="14" width="4" height="4"/>
-    <rect x="18" y="14" width="4" height="4"/>
-    <rect x="22" y="14" width="4" height="4"/>
-    <rect x="6" y="18" width="4" height="4"/>
-    <rect x="22" y="18" width="4" height="4"/>
-    <rect x="6" y="22" width="4" height="4"/>
-    <rect x="22" y="22" width="4" height="4"/>
-    <rect x="6" y="26" width="4" height="4"/>
-    <rect x="22" y="26" width="4" height="4"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    text { fill: #000000; }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #ffffff; }
+    }
+  </style>
+  <text
+    x="16"
+    y="16"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    font-size="30"
+    font-weight="700"
+  >a</text>
 </svg>
