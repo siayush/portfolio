@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" role="img" aria-label="Thousands of mostly idle connections; the OS readiness list reports only the ready ones to a single-threaded worker event loop.">
+  <style>
+    text{font-family:'JetBrains Mono',ui-monospace,monospace;}
+    .t-title{fill:#16191F;font-weight:600;font-size:14px;}
+    .t-sub{fill:#5A6270;font-size:11.5px;}
+    .b-blue{fill:#DCE7FF;stroke:#2D6BFF;stroke-width:1.5;}
+    .b-amber{fill:#FBE6C2;stroke:#E8920C;stroke-width:1.5;}
+    .b-teal{fill:#CDEDE6;stroke:#0E8C7A;stroke-width:1.5;}
+    .b-gray{fill:#EAECF1;stroke:#C7CCD6;stroke-width:1.5;}
+    .arr{stroke:#16191F;stroke-width:1.6;fill:none;}
+    .dash{stroke:#C7CCD6;stroke-width:1;stroke-dasharray:4 4;fill:none;}
+  </style>
+  <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+  <rect x="0.5" y="0.5" width="679" height="379" rx="14" fill="#ffffff" stroke="#DDE1E8"/>
+  <rect class="dash" x="40" y="60" width="120" height="280" rx="12" fill="none"/>
+  <text class="t-title" x="100" y="84" text-anchor="middle">Connections</text>
+  <text class="t-sub" x="100" y="102" text-anchor="middle">thousands open</text>
+  <circle class="b-gray" cx="75" cy="135" r="9"/><circle class="b-amber" cx="125" cy="135" r="9"/>
+  <circle class="b-gray" cx="75" cy="170" r="9"/><circle class="b-gray" cx="125" cy="170" r="9"/>
+  <circle class="b-amber" cx="75" cy="205" r="9"/><circle class="b-gray" cx="125" cy="205" r="9"/>
+  <circle class="b-gray" cx="75" cy="240" r="9"/><circle class="b-gray" cx="125" cy="240" r="9"/>
+  <circle class="b-gray" cx="75" cy="275" r="9"/><circle class="b-amber" cx="125" cy="275" r="9"/>
+  <circle class="b-gray" cx="75" cy="310" r="9"/><circle class="b-gray" cx="125" cy="310" r="9"/>
+  <text class="t-sub" x="200" y="186" text-anchor="middle">ready</text>
+  <text class="t-sub" x="200" y="202" text-anchor="middle">only</text>
+  <line class="arr" x1="160" y1="215" x2="232" y2="215" marker-end="url(#a2)"/>
+  <rect class="b-blue" x="235" y="172" width="150" height="86" rx="10"/>
+  <text class="t-title" x="310" y="206" text-anchor="middle">epoll / kqueue</text>
+  <text class="t-sub" x="310" y="226" text-anchor="middle">OS readiness list</text>
+  <text class="t-sub" x="310" y="244" text-anchor="middle">reports ready sockets</text>
+  <text class="t-sub" x="422" y="208" text-anchor="middle">events</text>
+  <line class="arr" x1="385" y1="215" x2="457" y2="215" marker-end="url(#a2)"/>
+  <rect class="dash" x="460" y="90" width="180" height="250" rx="14" fill="none"/>
+  <text class="t-title" x="550" y="118" text-anchor="middle">Worker process</text>
+  <text class="t-sub" x="550" y="136" text-anchor="middle">1 per CPU core</text>
+  <path d="M588 175 A 53 53 0 1 1 588 250" fill="none" stroke="#0E8C7A" stroke-width="1.6" marker-end="url(#a2)"/>
+  <circle class="b-teal" cx="546" cy="213" r="40"/>
+  <text class="t-title" x="546" y="211" text-anchor="middle">event loop</text>
+  <text class="t-sub" x="546" y="229" text-anchor="middle">1 thread</text>
+</svg>
