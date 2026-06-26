@@ -1,0 +1,60 @@
+<svg width="100%" viewBox="0 0 680 460" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>The PDU name at each layer, going down the stack</title>
+<desc>Going down the stack, the same data is renamed at each layer as headers are added. The Application layers (7, 6, 5) carry Data. The Transport layer (4) adds ports to make a Segment. The Network layer (3) adds IP addresses to make a Packet. The Data Link layer (2) adds MAC addresses to make a Frame. The Physical layer (1) sends it as Bits on the wire.</desc>
+<rect x="0.5" y="0.5" width="679" height="459" rx="14" fill="#ffffff" stroke="#DDE1E8"/>
+<g style="font-family:'Anthropic Sans', -apple-system, 'system-ui', 'Segoe UI', sans-serif;">
+
+  <text x="337" y="48" text-anchor="middle" style="fill:rgb(68, 68, 65);font-size:13px;font-weight:600;">PDU · the data's name at each layer</text>
+
+  <!-- going-down arrow + label (far left) -->
+  <line x1="46" y1="78" x2="46" y2="398" stroke="rgb(137, 135, 129)" stroke-width="1.5"/>
+  <path d="M41 391 L46 401 L51 391 Z" fill="rgb(137, 135, 129)"/>
+  <text x="26" y="238" text-anchor="middle" transform="rotate(-90 26 238)" style="fill:rgb(137, 135, 129);font-size:10.5px;letter-spacing:1.5px;">GOING DOWN</text>
+
+  <!-- rename chevrons between rows (center x=337) -->
+  <path d="M329 132 L337 140 L345 132" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M329 204 L337 212 L345 204" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M329 276 L337 284 L345 276" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M329 348 L337 356 L345 348" fill="none" stroke="rgb(137, 135, 129)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Row 1: Data (Application, L7-5) purple -->
+  <rect x="62" y="70" width="168" height="56" rx="8" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)" stroke-width="1"/>
+  <text x="146" y="93"  text-anchor="middle" style="fill:rgb(60, 52, 137);font-size:13px;font-weight:600;">Application</text>
+  <text x="146" y="111" text-anchor="middle" style="fill:rgb(83, 74, 183);font-size:11px;">L7 · L6 · L5</text>
+  <rect x="262" y="70" width="150" height="56" rx="8" fill="rgb(238, 237, 254)" stroke="rgb(83, 74, 183)" stroke-width="1"/>
+  <text x="337" y="104" text-anchor="middle" style="fill:rgb(60, 52, 137);font-size:17px;font-weight:600;">Data</text>
+  <text x="432" y="102" style="fill:rgb(82, 81, 78);font-size:12px;">the raw message</text>
+
+  <!-- Row 2: Segment (Transport, L4) teal -->
+  <rect x="62" y="142" width="168" height="56" rx="8" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)" stroke-width="1"/>
+  <text x="146" y="165" text-anchor="middle" style="fill:rgb(8, 80, 65);font-size:13px;font-weight:600;">Transport</text>
+  <text x="146" y="183" text-anchor="middle" style="fill:rgb(15, 110, 86);font-size:11px;">L4</text>
+  <rect x="262" y="142" width="150" height="56" rx="8" fill="rgb(225, 245, 238)" stroke="rgb(15, 110, 86)" stroke-width="1"/>
+  <text x="337" y="176" text-anchor="middle" style="fill:rgb(8, 80, 65);font-size:17px;font-weight:600;">Segment</text>
+  <text x="432" y="174" style="fill:rgb(82, 81, 78);font-size:12px;">+ source &amp; dest ports</text>
+
+  <!-- Row 3: Packet (Network, L3) blue -->
+  <rect x="62" y="214" width="168" height="56" rx="8" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)" stroke-width="1"/>
+  <text x="146" y="237" text-anchor="middle" style="fill:rgb(12, 68, 124);font-size:13px;font-weight:600;">Network</text>
+  <text x="146" y="255" text-anchor="middle" style="fill:rgb(24, 95, 165);font-size:11px;">L3</text>
+  <rect x="262" y="214" width="150" height="56" rx="8" fill="rgb(230, 241, 251)" stroke="rgb(24, 95, 165)" stroke-width="1"/>
+  <text x="337" y="248" text-anchor="middle" style="fill:rgb(12, 68, 124);font-size:17px;font-weight:600;">Packet</text>
+  <text x="432" y="246" style="fill:rgb(82, 81, 78);font-size:12px;">+ source &amp; dest IPs</text>
+
+  <!-- Row 4: Frame (Data Link, L2) gray -->
+  <rect x="62" y="286" width="168" height="56" rx="8" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)" stroke-width="1"/>
+  <text x="146" y="309" text-anchor="middle" style="fill:rgb(68, 68, 65);font-size:13px;font-weight:600;">Data Link</text>
+  <text x="146" y="327" text-anchor="middle" style="fill:rgb(95, 94, 90);font-size:11px;">L2</text>
+  <rect x="262" y="286" width="150" height="56" rx="8" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)" stroke-width="1"/>
+  <text x="337" y="320" text-anchor="middle" style="fill:rgb(68, 68, 65);font-size:17px;font-weight:600;">Frame</text>
+  <text x="432" y="318" style="fill:rgb(82, 81, 78);font-size:12px;">+ source &amp; dest MACs</text>
+
+  <!-- Row 5: Bits (Physical, L1) gray -->
+  <rect x="62" y="358" width="168" height="56" rx="8" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)" stroke-width="1"/>
+  <text x="146" y="381" text-anchor="middle" style="fill:rgb(68, 68, 65);font-size:13px;font-weight:600;">Physical</text>
+  <text x="146" y="399" text-anchor="middle" style="fill:rgb(95, 94, 90);font-size:11px;">L1</text>
+  <rect x="262" y="358" width="150" height="56" rx="8" fill="rgb(241, 239, 232)" stroke="rgb(95, 94, 90)" stroke-width="1"/>
+  <text x="337" y="392" text-anchor="middle" style="fill:rgb(68, 68, 65);font-size:17px;font-weight:600;">Bits</text>
+  <text x="432" y="390" style="fill:rgb(82, 81, 78);font-size:12px;">signals on the wire</text>
+</g>
+</svg>
