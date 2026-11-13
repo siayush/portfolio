@@ -29,5 +29,11 @@ export function ScrambleText({
     overdrive: true,
   })
 
-  return <span ref={ref} className={className} />
+  // The text is rendered as children so it is in the server HTML (crawlers,
+  // no-JS); use-scramble then takes over the span's contents on mount.
+  return (
+    <span ref={ref} className={className}>
+      {text}
+    </span>
+  )
 }

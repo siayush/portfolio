@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://siayush.vercel.app/og/home?title=work",
+        url: "/og/home?title=work",
       },
     ],
   },

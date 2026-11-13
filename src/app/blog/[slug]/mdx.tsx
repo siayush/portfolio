@@ -120,13 +120,7 @@ async function Pre({
     }
 
     const code = String(codeElement?.props.children)
-    const html = await codeToHtml(code, {
-      lang,
-      themes: {
-        dark: "vesper",
-        light: "vitesse-light",
-      },
-    })
+    const html = await codeToHtml(code, { lang, theme: "vesper" })
 
     return (
       <div className="group relative">
@@ -151,10 +145,21 @@ function slugify(str: string) {
     .replace(/\-\-+/g, "-") // Replace multiple - with single -
 }
 
+// Plain text of a React node, descending into elements so inline formatting
+// in a heading (*emphasis*, `code`) contributes its text to the anchor slug.
+function textOf(node: React.ReactNode): string {
+  return Children.toArray(node)
+    .map((child) =>
+      isValidElement<{ children?: React.ReactNode }>(child)
+        ? textOf(child.props.children)
+        : String(child),
+    )
+    .join("")
+}
+
 function createHeading(level: number) {
   const HeadingComponent = ({ children }: { children: React.ReactNode }) => {
-    const childrenString = Children.toArray(children).join("")
-    const slug = slugify(childrenString)
+    const slug = slugify(textOf(children))
     return createElement(`h${level}`, { id: slug }, [
       createElement(
         "a",

@@ -3,9 +3,10 @@ import fonts from "./fonts.json"
 import "./fonts.css"
 import "./globals.css"
 import { Navbar } from "../components/navbar"
+import { SITE_URL } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://siayush.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Ayush Gupta",
     template: "%s | Ayush Gupta",
@@ -14,11 +15,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ayush Gupta",
     description: "Software engineer working on backend, databases, and system architecture.",
-    url: "https://siayush.vercel.app",
+    url: "/",
     siteName: "Ayush Gupta",
     locale: "en_US",
     type: "website",
-    images: ["https://siayush.vercel.app/og/home"],
+    images: ["/og/home"],
   },
   robots: {
     index: true,

@@ -1,12 +1,13 @@
 import { ScrambleText } from "@/components/scramble-text"
 import { Posts } from "@/components/posts"
-import { getPublishedPosts } from "@/lib/blog"
+import { getPublishedPosts, type PostSummary } from "@/lib/blog"
 import { Metadata } from "next"
 
-const posts = getPublishedPosts().sort(
-  (a, b) =>
-    new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-)
+// Only slug and metadata cross into the client component, not post bodies.
+const posts: PostSummary[] = getPublishedPosts().map(({ slug, metadata }) => ({
+  slug,
+  metadata,
+}))
 
 export default async function BlogPage() {
   return (
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://siayush.vercel.app/og/home?title=blog",
+        url: "/og/home?title=blog",
       },
     ],
   },

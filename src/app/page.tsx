@@ -3,24 +3,10 @@ import { Item, SectionList } from "@/components/section-list"
 import { BlogSection } from "@/components/blog-section"
 import { LinksSection } from "@/components/links-section"
 import { workItems } from "@/lib/work-items"
+import { projects } from "@/lib/projects"
 
 const featuredWorkItems: Item[] = workItems.slice(0, 3)
-
-const projectItems = [
-  {
-    title: "ingestor",
-    role: "creator",
-    description:
-      "scalable log ingestion and query system with real-time pipelines and a dashboard for exploring logs at volume",
-    href: "https://github.com/siAyush/ingestor",
-  },
-  {
-    title: "monkey",
-    role: "creator",
-    description: "tree-walking interpreter for the monkey language, from scratch in go",
-    href: "https://github.com/siAyush/monkey",
-  },
-]
+const featuredProjects: Item[] = projects.slice(0, 2)
 
 export default function HomePage() {
   return (
@@ -35,7 +21,7 @@ export default function HomePage() {
       />
       <SectionList
         title="projects"
-        items={projectItems}
+        items={featuredProjects}
         viewAllHref="/projects"
         viewAllText="all projects"
       />

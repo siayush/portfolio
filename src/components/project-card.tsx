@@ -1,14 +1,6 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-
-type ProjectCardProps = {
-  title: string
-  description: string
-  role: string
-  period?: string
-  technologies: string[]
-  href: string
-}
+import type { Project } from "@/lib/projects"
 
 export function ProjectCard({
   title,
@@ -17,7 +9,7 @@ export function ProjectCard({
   period,
   technologies,
   href,
-}: ProjectCardProps) {
+}: Project) {
   return (
     <Link href={href} target="_blank" className="group block rounded-lg p-4 -mx-4 hover:bg-neutral-900/50">
       <div className="flex items-start justify-between gap-4">

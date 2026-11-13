@@ -3,12 +3,7 @@ import { ArrowUpRight } from "lucide-react"
 import { getPublishedPosts } from "@/lib/blog"
 import { formatDate } from "@/lib/utils"
 
-const posts = getPublishedPosts()
-  .sort(
-    (a, b) =>
-      new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-  )
-  .slice(0, 4)
+const posts = getPublishedPosts().slice(0, 4)
 
 export function BlogSection() {
   return (

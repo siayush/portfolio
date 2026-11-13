@@ -2,11 +2,11 @@
 
 import { useEffect, useState, useRef } from "react"
 import { useRouter } from "next/navigation"
-import type { MDXFileData } from "@/lib/blog"
+import type { PostSummary } from "@/lib/blog"
 import { PostItem } from "./post-item"
 
 type PostsProps = {
-  posts: MDXFileData[]
+  posts: PostSummary[]
 }
 
 export function Posts({ posts }: PostsProps) {

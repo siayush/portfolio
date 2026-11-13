@@ -7,7 +7,7 @@ import {
   getAdjacentPosts,
   getReadingTime,
 } from "@/lib/blog"
-import { formatDateLong } from "@/lib/utils"
+import { SITE_URL, formatDateLong } from "@/lib/utils"
 import type { Metadata } from "next"
 
 type PageProps = {
@@ -21,7 +21,12 @@ export function generateStaticParams() {
 
 // Absolute OG image URL for a post; the title is encoded so "&", "#" or "?" survive.
 function ogImageUrl(title: string) {
-  return `https://siayush.vercel.app/og/blog?title=${encodeURIComponent(title)}`
+  return `${SITE_URL}/og/blog?title=${encodeURIComponent(title)}`
+}
+
+// Absolute URL of a post page (JSON-LD needs it absolute).
+function postUrl(slug: string) {
+  return `${SITE_URL}/blog/${slug}`
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata | undefined> {
@@ -39,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata 
       description: post.metadata.description,
       publishedTime: post.metadata.date,
       type: "article",
-      url: `https://siayush.vercel.app/blog/${post.slug}`,
+      url: postUrl(post.slug),
       images: [{ url: ogImageUrl(post.metadata.title) }],
     },
     twitter: {
@@ -76,7 +81,7 @@ export default async function Post({ params }: PageProps) {
             dateModified: post.metadata.date,
             description: post.metadata.description,
             image: ogImageUrl(post.metadata.title),
-            url: `https://siayush.vercel.app/blog/${post.slug}`,
+            url: postUrl(post.slug),
             author: {
               "@type": "Person",
               name: "Ayush Gupta",

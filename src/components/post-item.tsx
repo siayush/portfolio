@@ -1,9 +1,9 @@
-import { type MDXFileData } from "@/lib/blog"
+import { type PostSummary } from "@/lib/blog"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 
 type PostItemProps = {
-  post: MDXFileData
+  post: PostSummary
   isSelected?: boolean
 }
 
