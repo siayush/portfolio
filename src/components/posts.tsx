@@ -20,14 +20,14 @@ export function Posts({ posts }: PostsProps) {
     item.metadata.title.toLowerCase().includes(searchQuery.toLowerCase()),
   )
 
-  const scrollSelectedIntoView = () => {
-    if (selectedItemRef.current) {
-      selectedItemRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      })
-    }
-  }
+  // Runs after render, so the ref already points at the newly selected post.
+  useEffect(() => {
+    if (!isSearching) return
+    selectedItemRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    })
+  }, [isSearching, selectedIndex])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -59,7 +59,6 @@ export function Posts({ posts }: PostsProps) {
               ? prev - 1
               : prev
 
-          scrollSelectedIntoView()
           return newIndex
         })
       } else if (isSearching && e.key === "Enter" && filteredPosts.length > 0) {
@@ -105,6 +104,7 @@ export function Posts({ posts }: PostsProps) {
         {filteredPosts.map((item, index) => (
           <div
             key={item.slug}
+            id={`post-${item.slug}`}
             ref={
               isSearching && index === selectedIndex ? selectedItemRef : null
             }

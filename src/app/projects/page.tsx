@@ -8,7 +8,6 @@ const projects = [
     description:
       "scalable log ingestion and query system with real-time pipelines, advanced filtering, and a dashboard for exploring logs at volume",
     role: "creator",
-    achievements: [],
     technologies: ["go", "kafka", "elastic search", "docker", "kibana", "react"],
     href: "https://github.com/siAyush/ingestor",
   },
@@ -17,7 +16,6 @@ const projects = [
     description:
       "tree-walking interpreter for the monkey language, built from scratch in go. supports first-class functions, closures, arrays and hash maps",
     role: "creator",
-    achievements: [],
     technologies: ["go", "interpreter", "compilers"],
     href: "https://github.com/siAyush/monkey",
   },
@@ -26,7 +24,6 @@ const projects = [
     description:
       "classic machine learning models and algorithms implemented from scratch with only numpy",
     role: "creator",
-    achievements: [],
     technologies: ["python", "numpy"],
     href: "https://github.com/siAyush/ScratchML",
   },
@@ -35,7 +32,6 @@ const projects = [
     description:
       "a tour booking app with authentication, authorization and a restful node.js backend",
     role: "creator",
-    achievements: [],
     technologies: ["nodejs", "expressjs", "mongodb"],
     href: "https://github.com/siAyush/Natours",
   },
@@ -43,7 +39,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="animate-fade-in-up">
+    <main>
       <h1 className="text-4xl font-bold mb-8 text-white">
         <span className="text-accent accent-glow mr-2">*</span>
         <ScrambleText text="projects" />

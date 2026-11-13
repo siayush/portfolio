@@ -27,7 +27,7 @@ export function SectionList({
   showSectionBorder = true,
 }: SectionListProps) {
   return (
-    <section className={`mb-12 animate-fade-in-up ${showSectionBorder ? "pt-10 border-t border-neutral-800" : ""}`}>
+    <section className={`mb-12 ${showSectionBorder ? "pt-10 border-t border-neutral-800" : ""}`}>
       {showTitle && (
         <div className="flex items-baseline justify-between mb-6">
           <h2 className="text-2xl font-semibold flex items-center text-white">

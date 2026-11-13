@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { MDX } from "./mdx"
 import {
+  getPosts,
   getPostBySlug,
   getAdjacentPosts,
   getReadingTime,
@@ -13,6 +14,16 @@ type PageProps = {
   params: Promise<{ slug: string }>
 }
 
+// Prebuild every post (drafts included, so their URLs keep working) as static HTML.
+export function generateStaticParams() {
+  return getPosts().map((post) => ({ slug: post.slug }))
+}
+
+// Absolute OG image URL for a post; the title is encoded so "&", "#" or "?" survive.
+function ogImageUrl(title: string) {
+  return `https://siayush.vercel.app/og/blog?title=${encodeURIComponent(title)}`
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata | undefined> {
   const slug = (await params).slug
   const post = getPostBySlug(slug)
@@ -20,31 +31,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata 
     return
   }
 
-  const publishedTime = formatDateLong(post.metadata.date)
-
   return {
     title: post.metadata.title,
     description: post.metadata.description,
     openGraph: {
       title: post.metadata.title,
       description: post.metadata.description,
-      publishedTime,
+      publishedTime: post.metadata.date,
       type: "article",
       url: `https://siayush.vercel.app/blog/${post.slug}`,
-      images: [
-        {
-          url: `https://siayush.vercel.app/og/blog?title=${post.metadata.title}`,
-        },
-      ],
+      images: [{ url: ogImageUrl(post.metadata.title) }],
     },
     twitter: {
       title: post.metadata.title,
       description: post.metadata.description,
       card: "summary_large_image",
       creator: "@siAyushh",
-      images: [
-        `https://siayush.vercel.app/og/blog?title=${post.metadata.title}&top=${publishedTime}`,
-      ],
+      images: [ogImageUrl(post.metadata.title)],
     },
   }
 }
@@ -60,7 +63,7 @@ export default async function Post({ params }: PageProps) {
   const readingTime = getReadingTime(post.content)
 
   return (
-    <section className="animate-fade-in-up">
+    <section>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -72,9 +75,7 @@ export default async function Post({ params }: PageProps) {
             datePublished: post.metadata.date,
             dateModified: post.metadata.date,
             description: post.metadata.description,
-            image: `https://siayush.vercel.app/og/blog?title=${
-              post.metadata.title
-            }&top=${formatDateLong(post.metadata.date)}`,
+            image: ogImageUrl(post.metadata.title),
             url: `https://siayush.vercel.app/blog/${post.slug}`,
             author: {
               "@type": "Person",

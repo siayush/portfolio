@@ -5,7 +5,7 @@ import { Metadata } from "next"
 
 export default function WorkPage() {
   return (
-    <main className="animate-fade-in-up">
+    <main>
       <h1 className="text-4xl font-bold mb-8 text-white">
         <span className="text-accent accent-glow mr-2">*</span>
         <ScrambleText text="work" />

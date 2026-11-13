@@ -12,7 +12,7 @@ const posts = getPublishedPosts()
 
 export function BlogSection() {
   return (
-    <section className="mb-12 pt-10 border-t border-neutral-800 animate-fade-in-up">
+    <section className="mb-12 pt-10 border-t border-neutral-800">
       <div className="flex items-baseline justify-between mb-6">
         <h2 className="text-2xl font-semibold flex items-center text-white">
           <span className="text-accent accent-glow mr-2">*</span>
