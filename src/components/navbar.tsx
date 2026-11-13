@@ -1,52 +1,82 @@
-"use client";
+"use client"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { m } from "framer-motion";
-import { ModeToggle } from "@/components/mode-toggle";
-import { cn } from "@/lib/utils";
+export function Navbar() {
+  const router = useRouter()
 
-const links = [
-  { href: "/", label: "HOME" },
-  { href: "/projects", label: "PROJECTS" },
-  { href: "/blog", label: "WRITING" },
-];
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      // Don't trigger if any input elements are focused or if event target is an input
+      if (
+        document.activeElement?.tagName === "INPUT" ||
+        document.activeElement?.tagName === "TEXTAREA" ||
+        event.target instanceof HTMLInputElement
+      ) {
+        return
+      }
 
-export default function NavBar() {
-  const pathname = usePathname();
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+
+      const key = event.key.toLowerCase()
+
+      switch (key) {
+        case "h":
+          router.push("/")
+          break
+        case "b":
+          router.push("/blog")
+          break
+        case "p":
+          router.push("/projects")
+          break
+        case "w":
+          router.push("/work")
+          break
+        default:
+          if (event.code === "KeyW") {
+            router.push("/work")
+          }
+          break
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyPress)
+    return () => window.removeEventListener("keydown", handleKeyPress)
+  }, [router])
 
   return (
-    <nav className="flex justify-between items-center mb-10">
-      <ul className="flex items-center gap-1 -ml-2">
-        {links.map(({ href, label }) => {
-          const active =
-            href === "/" ? pathname === "/" : pathname.startsWith(href);
-          return (
-            <li key={href}>
-              <Link
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "relative font-pixel px-2 py-1 text-sm tracking-tight transition-colors rounded-none",
-                  active
-                    ? "text-blueprint"
-                    : "text-foreground/70 hover:text-blueprint"
-                )}
-              >
-                {label}
-                {active && (
-                  <m.span
-                    layoutId="nav-underline"
-                    className="absolute left-0 right-0 -bottom-px h-0.5 bg-blueprint"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-      <ModeToggle />
+    <nav className="flex items-center justify-between mb-12 text-sm">
+      <div className="flex space-x-1 sm:space-x-4">
+        <Link
+          href="/"
+          className="hover:text-accent transition-colors duration-200 py-2 px-1.5 sm:px-0 sm:py-0"
+        >
+          <span className="hidden sm:inline">[h] </span>home
+        </Link>
+        <Link
+          href="/blog"
+          prefetch={true}
+          className="hover:text-accent transition-colors duration-200 py-2 px-1.5 sm:px-0 sm:py-0"
+        >
+          <span className="hidden sm:inline">[b] </span>blog
+        </Link>
+        <Link
+          href="/work"
+          className="hover:text-accent transition-colors duration-200 py-2 px-1.5 sm:px-0 sm:py-0"
+        >
+          <span className="hidden sm:inline">[w] </span>work
+        </Link>
+        <Link
+          href="/projects"
+          className="hover:text-accent transition-colors duration-200 py-2 px-1.5 sm:px-0 sm:py-0"
+        >
+          <span className="hidden sm:inline">[p] </span>projects
+        </Link>
+      </div>
     </nav>
-  );
+  )
 }

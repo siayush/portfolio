@@ -1,19 +1,17 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+export function formatDate(dateString: string) {
+  return new Date(dateString)
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+    .toLowerCase()
 }
 
-// No relative "(2w ago)" suffix: pages are statically generated, so anything
-// computed against "now" freezes at build time and goes stale.
-export function formatDate(date: string) {
-  if (!date.includes("T")) {
-    date = `${date}T00:00:00`;
-  }
-  return new Date(date).toLocaleString("en-us", {
+export function formatDateLong(dateString: string) {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
     month: "long",
     day: "numeric",
-    year: "numeric",
-  });
+  })
 }

@@ -1,69 +1,51 @@
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
-import Link from "next/link";
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 
-interface Props {
-  title: string;
-  description: string;
-  tags: readonly string[];
-  links?: readonly {
-    icon: React.ReactNode;
-    type: string;
-    href: string;
-  }[];
+type ProjectCardProps = {
+  title: string
+  description: string
+  role: string
+  period?: string
+  achievements: string[]
+  technologies: string[]
+  href: string
 }
 
-export function ProjectCard({ title, description, tags, links }: Props) {
+export function ProjectCard({
+  title,
+  description,
+  role,
+  period,
+  technologies,
+  href,
+}: ProjectCardProps) {
   return (
-    <Card className="group flex flex-col overflow-hidden border border-foreground/15 dark:border-foreground/25 hover:border-foreground/40 dark:hover:border-foreground/55 transition-colors duration-200 h-full rounded-none bg-transparent">
-      {/* Stripe band */}
-      <div className="bg-stripes-blueprint h-2 border-b border-foreground/15 dark:border-foreground/25" />
-
-      <div className="flex flex-col flex-1 p-4">
-        <h3 className="font-serif text-foreground text-lg font-medium tracking-tight leading-tight">
-          {title}
-        </h3>
-        <p className="mt-2 font-serif text-sm leading-snug text-foreground/85">
-          {description}
-        </p>
-
-        {tags && tags.length > 0 && (
-          <>
-            <div className="mt-4 mb-3 leader-dotted-card" aria-hidden="true" />
-            <div className="flex flex-wrap gap-1">
-              {tags.map((tag) => (
-                <Badge
-                  className="rounded-none border-foreground/30 bg-transparent text-foreground text-[10px] font-normal px-1.5 py-0 hover:border-foreground/60 !transition-none"
-                  variant="outline"
-                  key={tag}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </>
-        )}
-
-        {links && links.length > 0 && (
-          <div className="mt-4 flex flex-row flex-wrap items-center gap-x-4 gap-y-1.5">
-            {links.map((l) => (
-              <Link
-                href={l.href}
-                key={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${title} — ${l.type}`}
-                className="inline-flex items-center gap-1.5 font-pixel text-[10px] tracking-tight text-blueprint hover:text-foreground transition-colors"
+    <Link href={href} target="_blank" className="group block rounded-lg p-4 -mx-4 hover:bg-neutral-900/50">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-500 mt-1">
+            {role}
+            {period && (
+              <span className="text-gray-600"> · {period}</span>
+            )}
+          </p>
+          <p className="text-gray-300 mt-2 text-pretty">{description}</p>
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            {technologies.map((tech) => (
+              <span
+                key={tech}
+                className="text-xs text-gray-500 bg-neutral-800/60 px-2 py-0.5 rounded-full"
               >
-                <span className="size-3 inline-flex items-center justify-center">
-                  {l.icon}
-                </span>
-                <span>[ {l.type.toUpperCase()} →&nbsp;]</span>
-              </Link>
+                {tech}
+              </span>
             ))}
           </div>
-        )}
+        </div>
+        <ArrowUpRight className="w-4 h-4 mt-1.5 text-gray-600 group-hover:text-accent transition-colors shrink-0" />
       </div>
-    </Card>
-  );
+    </Link>
+  )
 }

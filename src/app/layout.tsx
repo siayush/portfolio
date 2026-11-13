@@ -1,91 +1,61 @@
-import { MotionProvider } from "@/components/motion-provider";
-import { ThemeProvider } from "@/components/theme-provider";
-import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
-import { SITE_URL } from "@/lib/site";
-import type { Metadata, Viewport } from "next";
-import { Inter as FontSans, Silkscreen, Source_Serif_4 } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import "./globals.css";
-import Footer from "@/components/footer";
-import NavBar from "@/components/navbar";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const fontPixel = Silkscreen({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-pixel",
-});
-
-const fontSerif = Source_Serif_4({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "500"],
-  variable: "--font-serif",
-});
+import type { Metadata } from "next"
+import fonts from "./fonts.json"
+import "./fonts.css"
+import "./globals.css"
+import { Navbar } from "../components/navbar"
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://siayush.vercel.app"),
   title: {
-    default: DATA.name,
-    template: `%s | ${DATA.name}`,
+    default: "Ayush Gupta",
+    template: "%s | Ayush Gupta",
   },
-  description: DATA.description,
-  alternates: {
-    canonical: "/",
-  },
+  description: "Software engineer working on backend, databases, and system architecture.",
   openGraph: {
-    title: `${DATA.name}`,
-    description: DATA.description,
-    url: SITE_URL,
-    siteName: `${DATA.name}`,
+    title: "Ayush Gupta",
+    description: "Software engineer working on backend, databases, and system architecture.",
+    url: "https://siayush.vercel.app",
+    siteName: "Ayush Gupta",
     locale: "en_US",
     type: "website",
+    images: ["https://siayush.vercel.app/og/home"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-    },
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    "max-snippet": -1,
   },
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
+  twitter: {
+    title: "Ayush Gupta",
+    card: "summary_large_image",
+    creator: "@siAyushh",
+  },
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen flex flex-col bg-background font-sans antialiased max-w-2xl mx-auto py-10 sm:py-20 px-6",
-          fontSans.variable,
-          fontPixel.variable,
-          fontSerif.variable
-        )}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <MotionProvider>
-            <NavBar />
-            {children}
-            <Footer />
-            <Analytics />
-          </MotionProvider>
-        </ThemeProvider>
+    <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href={fonts.core.url}
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className="antialiased min-h-screen font-mono">
+        <div className="max-w-[42rem] mx-auto px-5 sm:px-4 py-8">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
-  );
+  )
 }

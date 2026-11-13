@@ -1,164 +1,45 @@
-import BlurFade from "@/components/blur-fade";
-import BlurFadeText from "@/components/blur-fade-text";
-import { ProjectCard } from "@/components/project-card";
-import { SocialLinks } from "@/components/social-links";
-import { WorkCard } from "@/components/work-card";
-import { DATA } from "@/data/resume";
-import Image from "next/image";
+import { Header } from "@/components/header"
+import { Item, SectionList } from "@/components/section-list"
+import { BlogSection } from "@/components/blog-section"
+import { LinksSection } from "@/components/links-section"
+import { workItems } from "@/lib/work-items"
 
-const BLUR_FADE_DELAY = 0.04;
+const featuredWorkItems: Item[] = workItems.slice(0, 3)
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
+const projectItems = [
+  {
+    title: "ingestor",
+    role: "creator",
+    description:
+      "scalable log ingestion and query system with real-time pipelines and a dashboard for exploring logs at volume",
+    href: "https://github.com/siAyush/ingestor",
+  },
+  {
+    title: "monkey",
+    role: "creator",
+    description: "tree-walking interpreter for the monkey language, from scratch in go",
+    href: "https://github.com/siAyush/monkey",
+  },
+]
+
+export default function HomePage() {
   return (
-    <div className="space-y-2">
-      <h2 className="font-pixel text-foreground text-lg sm:text-xl tracking-tight uppercase">
-        {children}
-      </h2>
-      <div className="h-px bg-foreground/30" />
-    </div>
-  );
-}
-
-function SkillList({
-  heading,
-  skills,
-}: {
-  heading: string;
-  skills: readonly string[];
-}) {
-  return (
-    <div>
-      <h3 className="font-serif text-foreground text-base font-medium mb-1.5">
-        {heading}
-      </h3>
-      <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-foreground/85">
-        {skills.map((skill) => (
-          <li key={skill} className="flex items-baseline gap-1.5">
-            <span aria-hidden="true" className="text-foreground/40 select-none">
-              •
-            </span>
-            <span>{skill}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default function Page() {
-  return (
-    <main className="flex flex-col min-h-[100dvh] gap-y-12">
-      <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-6">
-          <div className="flex-col flex flex-1 gap-y-3">
-            <BlurFadeText
-              delay={BLUR_FADE_DELAY}
-              className="font-pixel text-blueprint text-3xl sm:text-5xl xl:text-6xl/none leading-none tracking-tight"
-              yOffset={8}
-              text={`I'M ${DATA.name.split(" ")[0].toUpperCase()}.`}
-            />
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <p className="max-w-[600px] font-serif text-foreground text-base sm:text-lg leading-snug">
-                {DATA.description}
-              </p>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
-              <SocialLinks />
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 1.8}>
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-[1fr_320px] gap-x-6 gap-y-3 items-start">
-                <div className="space-y-2">
-                  <p className="font-pixel text-[10px] tracking-[0.15em] text-blueprint">
-                    RESOLVE
-                  </p>
-                  <p className="font-serif text-sm leading-snug text-foreground/85">
-                    Most engineering starts as a tangle and quietly converges
-                    on the curve underneath. The interesting work is in the
-                    middle frames, the part where it doesn&apos;t look like
-                    anything yet.
-                  </p>
-                  <p className="font-pixel text-[9px] tracking-[0.15em] text-muted-foreground pt-1">
-                    8S LOOP · 4 CUBIC BEZIERS
-                  </p>
-                </div>
-                <figure className="w-full">
-                  <Image
-                    src="/loop-hero.svg"
-                    alt="Tangled curve resolving into a smooth circle"
-                    width={320}
-                    height={180}
-                    priority
-                    className="w-full h-auto"
-                  />
-                </figure>
-              </div>
-            </BlurFade>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="space-y-3">
-        <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <SectionHeading>About</SectionHeading>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <p className="font-pixel text-[10px] uppercase tracking-[0.15em] text-blueprint mt-3">
-            [ BREAK / UNDERSTAND / BUILD ]
-          </p>
-          <p className="font-serif text-foreground text-base leading-relaxed mt-3 max-w-full">
-            {DATA.summary}
-          </p>
-        </BlurFade>
-      </section>
-
-      <section id="skills" className="space-y-3">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <SectionHeading>Skills</SectionHeading>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <div className="flex flex-col gap-y-5 mt-3">
-            <SkillList heading="Languages" skills={DATA.languages} />
-            <SkillList heading="Technologies" skills={DATA.technologies} />
-          </div>
-        </BlurFade>
-      </section>
-
-      <section id="projects" className="space-y-3">
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <SectionHeading>Projects</SectionHeading>
-        </BlurFade>
-        <div className="flex flex-col gap-y-3 mt-3">
-          {DATA.projects.map((project) => (
-            <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 4}>
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                tags={project.technologies}
-                links={project.links}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
-
-      <section id="work" className="space-y-3">
-        <BlurFade delay={BLUR_FADE_DELAY * 5}>
-          <SectionHeading>Worked With</SectionHeading>
-        </BlurFade>
-        <div className="flex flex-col gap-y-3 mt-3">
-          {DATA.work.map((work) => (
-            <BlurFade key={work.company} delay={BLUR_FADE_DELAY * 5}>
-              <WorkCard
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+    <>
+      <Header />
+      <BlogSection />
+      <SectionList
+        title="work"
+        items={featuredWorkItems}
+        viewAllHref="/work"
+        viewAllText="all work"
+      />
+      <SectionList
+        title="projects"
+        items={projectItems}
+        viewAllHref="/projects"
+        viewAllText="all projects"
+      />
+      <LinksSection />
+    </>
+  )
 }

@@ -1,266 +1,109 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-@layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 210 11.1% 3.53%;
-
-      --card: 0 0% 100%;
-      --card-foreground: 210 11.1% 3.53%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 210 11.1% 3.53%;
-
-      --primary: 0 0% 9%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 0 0% 96.1%;
-      --secondary-foreground: 0 0% 9%;
-
-      --muted: 0 0% 96.1%;
-      --muted-foreground: 0 0% 45.1%;
-
-      --accent: 0 0% 96.1%;
-      --accent-foreground: 0 0% 9%;
-
-      --blueprint: 231 89% 53%;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 0 0% 89.8%;
-      --input: 0 0% 89.8%;
-      --ring: 0 0% 3.9%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 210 11.1% 3.53%;
-      --foreground: 0 0% 98%;
-
-      --card: 210 11.1% 3.53%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 210 11.1% 3.53%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 0 0% 9%;
-
-      --secondary: 0 0% 14.9%;
-      --secondary-foreground: 0 0% 98%;
-
-      --muted: 0 0% 14.9%;
-      --muted-foreground: 0 0% 63.9%;
-
-      --accent: 0 0% 14.9%;
-      --accent-foreground: 0 0% 98%;
-
-      --blueprint: 231 100% 72%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 0 0% 14.9%;
-      --input: 0 0% 14.9%;
-      --ring: 0 0% 83.1%;
-    }
-  }
-
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    html {
-      scroll-behavior: smooth;
-      @apply bg-background;
-    }
-    body {
-      @apply bg-background text-foreground;
-      -webkit-font-smoothing: antialiased;
-    }
-    ::selection {
-      background-color: hsl(var(--blueprint) / 0.25);
-      color: hsl(var(--foreground));
-    }
-    :focus-visible {
-      @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background rounded-sm;
-    }
-  }
-
-  /* Making Software-style dotted-square horizontal rule */
-  .rule-dotted {
-    height: 4px;
-    background-image: linear-gradient(
-      to right,
-      hsl(var(--foreground) / 0.55) 50%,
-      transparent 50%
-    );
-    background-size: 8px 4px;
-    background-repeat: repeat-x;
-  }
-  .rule-dotted-blueprint {
-    height: 4px;
-    background-image: linear-gradient(
-      to right,
-      hsl(var(--blueprint) / 0.85) 50%,
-      transparent 50%
-    );
-    background-size: 8px 4px;
-    background-repeat: repeat-x;
-  }
-
-  /* Dotted leader line — fills horizontal space between two flex children */
-  .leader-dotted {
-    flex: 1 1 auto;
-    align-self: end;
-    margin: 0 0.5rem 0.4em;
-    height: 0;
-    border-bottom: 1.5px dotted hsl(var(--muted-foreground) / 0.55);
-  }
-
-  /* Inline dotted divider — used inside cards/figures */
-  .leader-dotted-card {
-    height: 0;
-    border-bottom: 1.5px dotted hsl(var(--foreground) / 0.25);
-  }
-  .dark .leader-dotted-card {
-    border-bottom-color: hsl(var(--foreground) / 0.35);
-  }
-
-  /* Diagonal stripe band — Making Software card-header texture */
-  .bg-stripes-blueprint {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent 0,
-      transparent 4px,
-      hsl(var(--blueprint) / 0.22) 4px,
-      hsl(var(--blueprint) / 0.22) 5px
-    );
-  }
-
-  /* Drop cap on the lede paragraph of an article (serif, like Making Software) */
-  .article-dropcap > p:first-of-type::first-letter {
-    font-family: var(--font-serif), ui-serif, Georgia, serif;
-    font-weight: 500;
-    color: hsl(var(--foreground));
-    float: left;
-    font-size: 3.5rem;
-    line-height: 0.9;
-    padding: 0.45rem 0.5rem 0 0;
-    margin-top: 0.15rem;
-  }
-
-  h3 code {
-    @apply !text-lg md:!text-xl;
-  }
-  
-  .prose pre,
-  pre {
-    color: inherit !important;
-    border: 1px solid hsl(var(--foreground) / 0.15) !important;
-    border-radius: 0 !important;
-    padding: 1.75rem 0 1rem 0 !important;
-    margin: 1.5rem 0 !important;
-    overflow-x: auto;
-    background-color: transparent !important;
-    background-image:
-      linear-gradient(
-        to right,
-        hsl(var(--foreground) / 0.15),
-        hsl(var(--foreground) / 0.15)
-      ),
-      repeating-linear-gradient(
-        -45deg,
-        transparent 0,
-        transparent 4px,
-        hsl(var(--blueprint) / 0.22) 4px,
-        hsl(var(--blueprint) / 0.22) 5px
-      ) !important;
-    background-repeat: no-repeat, no-repeat !important;
-    background-size: 100% 1px, 100% 0.5rem !important;
-    background-position: 0 0.5rem, 0 0 !important;
-  }
-  .dark .prose pre,
-  .dark pre {
-    border-color: hsl(var(--foreground) / 0.25) !important;
-    background-image:
-      linear-gradient(
-        to right,
-        hsl(var(--foreground) / 0.25),
-        hsl(var(--foreground) / 0.25)
-      ),
-      repeating-linear-gradient(
-        -45deg,
-        transparent 0,
-        transparent 4px,
-        hsl(var(--blueprint) / 0.22) 4px,
-        hsl(var(--blueprint) / 0.22) 5px
-      ) !important;
-  }
-
-  .prose pre code,
-  pre code {
-    background: transparent !important;
-    padding: 0 !important;
-    border: 0 !important;
-  }
-
-  pre [data-line] {
-    @apply px-4
-  }
-
-  code {
-    @apply text-sm md:text-base !leading-loose;
-  }
-
-  pre > code {
-    counter-reset: line;
-  }
-
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-light);
-  }
-
-  .dark code[data-theme*=" "],
-  .dark code[data-theme*=" "] span {
-    color: var(--shiki-dark);
-  }
-  
-  code[data-line-numbers] {
-    counter-reset: line;
-  }
-  
-  code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    @apply inline-block w-4 mr-4 text-right text-gray-500;
-  }
- 
-  code {
-    counter-reset: line;
-  }
- 
-  code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
- 
-  /* Other styling */
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
+@theme inline {
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: #ff6b35;
 }
- 
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-  width: 2rem;
+
+:root {
+  --background: #111;
+  --foreground: #d1d5db;
 }
- 
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-  width: 3rem;
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.prose a:not(.anchor) {
+  @apply text-accent no-underline hover:underline;
+}
+
+.prose a.anchor {
+  @apply relative no-underline;
+}
+
+.prose a.anchor::before {
+  @apply absolute -left-4 opacity-0 transition-opacity duration-200 content-['#'] text-accent;
+}
+
+.prose a.anchor:hover::before,
+.prose a.anchor:focus-visible::before {
+  @apply opacity-100;
+}
+
+.prose a.anchor:focus-visible {
+  @apply outline-none;
+}
+
+.prose pre {
+  @apply overflow-x-auto border border-neutral-800 bg-[#111] my-4 rounded-sm;
+}
+
+.prose code:not(pre code) {
+  @apply px-1 py-0.5 text-sm border border-gray-700 rounded text-gray-200;
+}
+
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
+  content: none;
+}
+
+.prose pre code {
+  @apply p-4 block bg-transparent;
+  border: initial;
+  line-height: 1.6;
+}
+
+.prose code span {
+  @apply font-medium text-gray-200;
+}
+
+/* Prose typography — tuned mono for long-form reading */
+.prose-tuned-mono {
+  font-size: 0.9375rem; /* 15px — slightly smaller mono reads better */
+  line-height: 1.7;
+}
+
+.prose-tuned-mono :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.1em;
+  margin-bottom: 1.1em;
+}
+
+.prose-tuned-mono :where(h2):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.8em;
+  letter-spacing: -0.02em;
+}
+
+.prose-tuned-mono :where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1.5em;
+  letter-spacing: -0.01em;
+}
+
+.prose-tuned-mono :where(li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.prose-tuned-mono :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  font-style: normal;
+  border-left-color: #ff6b35;
+  padding-left: 1.5em;
+}
+
+/* accent glow for * markers and accent links */
+.accent-glow {
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.2);
 }
